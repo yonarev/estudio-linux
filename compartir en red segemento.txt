@@ -1,0 +1,25 @@
+172.17.235.192
+192.168.147.138
+en windows
+	python3 -m http.server 80 //o 5000
+// no resulta
+	Invoke-webRequest http://172.17.235.192/archivocompartido.txt -outFile nombrenuevo.txt
+	SERV FTP CN PYTHON
+	wget PRESENTACION.pptx
+
+en linux
+	wget 172.17.235.192/archivocompartido.txt
+	descarga
+	curl 172.17.235.192/archivocompartido.txt -o archivo.This is an example of simple text.
+	SERV FTP CN PYTHON
+		sudo python3 -m pyftpdlib --port 21
+
+192.168.80.221 en equipo clases
+	invoke-webRequest http://192.168.80.221/PRESENTACION.pptx -outFile PRESENTACION.pptx
+
+INSTALANDO wget 
+	choco install wget
+COMPARTIENDO EN LA CARPETA	
+	python -m http.server 8000
+192.168.80.221
+	wget http://192.168.80.221:8000/PRESENTACION.pptx //NO PROBADO AUN

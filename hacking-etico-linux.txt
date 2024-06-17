@@ -1,0 +1,37 @@
+Curso de Hacking desde CERO 
+Aprende Ciberseguridad Gratis 2024 
+HACKING ETICO
+	AUDITORIAS
+TUTORES
+	https://www.youtube.com/watch?v=BOiwAOwSWNw
+	https://youtu.be/4lKQKxwjXbg?list=PLa8PF7Z_n1hWZa8Tz78GAHrk17ELpGy1u
+
+INSTALACION MAQUINA VIRTUAL 
+	dscarga de virtual box 
+	https://www.virtualbox.org/wiki/Downloads
+	o vmware
+	instalar
+		https://www.kali.org/get-kali/#kali-platforms
+		elige 
+			virtual machines
+			VMware 64 //descarga para vmware
+		
+DESCARGA KALI LINUX para vmware
+	https://www.kali.org/get-kali/#kali-platforms
+	no live
+	https://help.offsec.com/hc/en-us/articles/360049796792-Kali-Linux-Virtual-Machine#kali-vm-download
+	
+INSTALAR KALI CON VMWARE
+	abrir vmware pro 
+	file / open / dar la ruta de kali para vmware
+	CONFIGURARR
+		memory
+		hd
+	MENSAJE elike y // I copied 
+	PANTALLA AZUL
+		2 ITEMS
+			kali
+			advanced
+	CREDENCIAL INICIAL
+		kali
+		kali

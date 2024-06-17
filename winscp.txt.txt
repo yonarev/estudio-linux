@@ -1,0 +1,9 @@
+DESCARGO E INSTALO WinSCP para windows
+EN LINUX ACTIVO SERVIDOR SCH
+EN WinSCP
+	nuevo sitio 
+		puerto 22
+	us
+		janvera
+	psw 
+		free

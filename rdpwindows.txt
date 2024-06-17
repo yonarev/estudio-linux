@@ -1,0 +1,42 @@
+crear servidor RDP EN windows 10 
+https://www.youtube.com/watch?v=DMFLaF0yM18
+Configurar escritorio remoto en Windows 10
+	psw de inicio de windows 
+		revisar
+		win/cfg/cuentas/opciones de incico/contraseña
+HABILITAR
+	win/cfg/sistema/escritorio remoto/ habilitar
+	NO ESTA
+	DESCARGO DE MIC STORAGE 
+		Escritorio remoto de Microsoft
+		es para accesar otros equipos
+Windows 10 Home Single NO PERMITE ACCEO REMOTO
+
+descargo rdpwrap !!no funciona!!
+	https://github.com/stascorp/rdpwrap/tree/master
+	LO UNICO QUE FUNCIONA CON RDP ES 
+ANYDESK	
+	cfg/AnyDesk/Seguridad/Habilitar acceso desatendido
+	pedirá que configures una contraseña
+	192.168.230.138
+
+Permitir AnyDesk a través del Firewall
+	Panel de control/Sistema y seguridad/Firewall de Windows Defender
+	AnyDesk en la lista y asegúrate de que las casillas 
+	para redes privadas y públicas estén marcadas.
+	192.168.230.138
+EN LINUX DESCARGAR
+	https://www.youtube.com/watch?v=5ZQuwKeFv9k
+	https://anydesk.com/es/downloads/linux
+	TERMINAL EN CARPETA
+	extraer el comprimido
+	dentro de la carpeta descomprimida que tiene 4 arcchivos 
+		terminal
+		sudo apt install -f -y
+	ir a escritorio anydesk
+	esta en aplicaciones
+PROBANDO 
+	en mi estacion en windows anydesk 
+		1 291 700 207
+	en windows anydesk ingresar la misma direccion
+		1 291 700 207

@@ -1,0 +1,2273 @@
+LINUX ES MULTIUSUARIO 
+	Linux es un sistema operativo multiusuario, 
+	lo que significa que varios usuarios pueden 
+	acceder y utilizar
+	los usuarios tienen control personal sobre 
+		archivos y directorios
+	los miembros de un grupo tiene Privilegios
+		asociados
+	si el usuario tiene un grupo de usuarios 
+		el le da accesos a los miembros
+		puede inculir a todos los demas que 
+		no son aun miembros de su grupo 
+		llamado mundo
+	un usuario puede pertenecer a muchos grupos
+	mundo=todos los demas
+	al crear una cuenta de usuario al usuario 
+			se le asignoa nro ID de usuario 
+
+		id //presenta el id en consola 
+		gid //presenta grupo en consola
+	CUENTAS DE USUARIO 
+		en el archivo /etc/passwd
+			cat /etc/passwd
+				presenta 
+				 nombre usuario/id/gid/nombre cta
+				 root tine id=0 
+		las contraseñas en /etc/shadow
+		los grupos se almacenan en /etc/group
+	SISTEMA DE CONTROL DE PERMISOS 
+		cat /etc/shadow //usuario comun no lo puede abrir
+	PERMISOS
+		lectura
+		escritura
+		ejecucion 
+		EJEMPLO
+			>prueba //se crea archivo prueba y se escribe 
+			ls -l prueba //viendo los permisos del archivo
+				-rw-r--r--1 
+				guon = - //es una archivo 
+				d //es un directorio
+				l //es un vinculo o acceso directo 
+
+				d 		rwx 	r-x	 	r-x 
+				↓		↓		↓		↓
+			tipo	    prop 	grupo	otros
+			de arch	   ietario			los demas
+										mundo
+			r= lectura, w=escritura x=ejecucion 
+			si no se establece permiso esta un guion
+					3		3		3
+				-	rw-		r--		r--1 
+			para eliminar o renombrar el archivo
+			va a depender del atributo del directorio
+CREAR USUARIO ESTANDAR 
+	siendo superusuario 
+	sudo adduser yonarev 
+		//pedira 1ero psw de superu 
+		//pedira darle una pass al usuario /
+		/sera indioamazonico$
+	para ver los usuarios que hay 
+		//muestra lista en archivo /etc/passwd
+		getent passwd 
+			yonarev:x:1001:1001:yonarev,2,,:/home/yonarev:/bin/bash
+DISTRIBUCION UBUNTU
+	Interfaz grafica predet GNOME
+	cli Gnome terminal ctrl alt t
+TUTORES
+	Linux Para Principiantes - Curso completo
+		https://www.youtube.com/watch?v=jVQKk8IB9pA
+	con directorios 
+	GUI interfaz grafica
+	CLI interfaz linea de comandos
+	SHELL
+		PREDETERMINADA
+		Shell Borne--> Bourne-again(bash)
+			AL INICIAR SISTEMA
+			lee escript archivos de incio
+			ENTORNO PERSONAL
+			lee otros scripts
+		OTRAS
+		C Shel (csh)
+		Korn Shell (Ksh)
+		Z Sell (zsh)
+TECLAS DIFICILES		
+	~=alt 126 //cd F5 es ~ en terminal
+	\=alt 92
+INGRESANDO A UBUNTU
+	janvera@janvera-VirtualBox:~$ //shell prompt
+	nombreusuario@nombremaquinav
+	$ es usuario habitual
+	# si es super usuario
+	comando -opciones argumentos
+	ls      -a       /home/janvera
+COMANDOS BASE
+	LISTAR
+		ls 
+		ls D* //lista solo los que comienzan con D
+		* //es expancion en linux y
+		echo esto es una prueba //imprime esto es una prueba
+		echo * //imprime carpetas y directorios no los ocultos
+		echo .* //muestra todos los archivo ocultos
+		/$   //es ruta raiz
+		pwd //para seber donde estamos
+			/home/janvera //directorio de inicio
+			ruta absoluta 
+		ls //presenta contenido de directorio
+		clear
+		ls -all
+		ls -a //resumen con los ocultos los .archivodirectoriooculto
+		ls --all //idem
+		ls -1 //en una sola col
+		ls -l //lista detallada atrib de permisos, propietario y ocultos
+		ls -l -a //idem
+		ls -l -h //presenta la unidad del tamaño archivos
+		ls -lg //idem
+		ls -lh Escritorio/lab-linux //lista ruta relativa
+			SI ES BLANCO ES ARCHIVO //regular de texto
+			SI ES AZUL ES DIRECTORIO
+			SI ES CIAN ES DE ENLACE //acceso directo
+			SI FONDO VERDE TEXTO NEGRO //es compartido publico
+		ls -o //ordenando
+		ls -R dir1/  //lista recursiva de los directorios
+EL DIRECTORIO DE SUPERUSUARIO 
+	no esta en home/
+	esta en la raiz del sist de arch
+	cd /    //a directorio raiz 
+		se ve directorio root/
+DIRECTORIO PADRE	
+	janvera es padre de Documentos
+	home es padre de janvera 
+CAMBIO DE DIRECTORIO
+	cd .. // a directorio padre
+	cd ../.. baja 2 directorios
+	cd ../../.. baja 3 directorios
+	--
+	cd . 	// . en el mismo directorio actual
+		// .. es el padre
+	cd /home/janvera/Descargas //es ruta abs
+	cd Descargas/ es ruta rel
+	~  //es el directorio de inicio del usuario
+	cd //sin argumento va al inicio
+	cd - //vuelve al directorio anterior
+CREANDO Y EDITANDO ARCHIVOS
+	touch archivo //actualiza fecha y hora de un archivo
+			o lo crea vacio si no existe
+	touch -d "13 jul" Documents/archivo.txt //actualiza fecha
+	nano archivo
+	desde home se ven los usuario del sistema
+CREANDO DIRECTORIOS
+	mkdir carpetanueva
+	mkdir carpeta1 carpeta2 carpeta3
+	mkdir carpeta1/docuemntos //crea uno dir dentro de otro
+	mkdir -p dir1/dir2/dir3 //crea varios
+	mkdir -p folder1/{folder2,folder3,folder4}
+ELIMINA DIRECTORIO
+	rmdir folder1 //elimina directorio si esta totalmente vacio
+	rm -r folder1 //elimina si tiene contenido
+COPIANDO ARCHIVOS
+	cp archivo1.txt archivo2.txt //copia archivo con otro nombre
+	cp archivo1.txt directorio/archivo2.txt //copia renombrando
+	cp archivo1.txt archivo2.txt directorio/
+COPIANDO DIRECTORIOS 
+	cp -r directorio_origen directorio_destino
+	┌──(root㉿kali)-[/home/kali/Escritorio/ESTUDIOS LINUX WINDOWS]
+	└─# cp -r scripts/ /home/janvera/Documentos/estudio-linux/
+CONCATENACION DE ARCHIVOS
+	cat //concatena archivos o verlos o crearlos
+	cat archivo.txt //presenta el archivo
+	presenta concatenados varios
+		cat archivo1.txt archivo2.txt archivo3.txt //ver varios
+	cat -n archivo.txt //presenta con lineas
+	cat>archivocreado.txt
+		creo contenido dentro
+		//salir con ctrl d
+	cat archivocreado.txt>creadodos.txt //sobrescribe si existe sino lo crea
+	cat archivo1.txt>>archivo2.txt //para concatenar 2 archivos
+		en archivo2 al final se agrega contendido de archivo1
+	cat archivo1.txt archivo2.txt > archivofinal.txt //en un archivofinal 2
+DESPLIEGA DATOS ARCHIVOS
+	wc archivo.txt //da las nro de lineas palabras y caracteres
+	wc -l archivo.txt //da solo nro de lineas
+	wc -w archivo.txt  // da nro de palabras
+	wc -c archivo.txt //da nro de caracteres
+
+	> //redirecciona salida
+	< //redirecciona entrada
+PRESENTA ARCHIVOS
+	less archivo.txt //muestra tambien el contenido
+		teclas de desplazamiento
+		barra //adelante
+		b //atras
+		flecha abajo //avanza linea
+		flecha arriba
+		g //superior
+		G //inferior
+		/patron  //busca
+		n //busquda
+		N //idem
+		h //ayuda
+		q //salir
+EDITA ARCHIVOS nano
+	nano //crea y edita archivo
+	nano --version 
+		6.2
+		SI NO ESTA INSTALADO
+		sudo apt install nano
+		sudo yum install nano //si fedora o centos
+	nano enter	
+		ctrl-x salir
+		k /cortar
+		alt a /selecciona texto
+		alt 6 /copia
+		ctl 6 cancela
+		u /pegar 	
+		c /cancelar
+		w /busqueda
+		n /baja una linea
+		p /sube una linea
+		e /final de linea
+		a /inicio linea
+		\ /busca cadena y remplaza
+		v /baja pagina
+		y /sube pagina
+EDITOR DE TEXTO Y CODIGO vi
+	vi //editor de texto mas complejo pero en todas las distro
+	vi archivo //si no existe lo crea
+	vi enter //para editor
+		:q //para salir
+		MODO DE COMANDO //por omision
+		esc
+		i /antes del cursor
+		a //despues del cursor
+		I //al ppio dela linea actual
+		A //Al final de la linea actual
+		o // abrir una line debajo de la actual
+		l //espacio a la derecha
+		h //espacio a la izquierda
+		j //bajar una linea
+		k //subir una linea
+		w //palabra derecha
+		b //palabra izquierda
+		0 //final de linea
+		$ //inicio linea
+		:$ final de linea
+		( comienzo oracio
+		) fin oracion
+		:nro de linea
+		nroG //va al nro de line
+		r //para remplazar una letra
+		nyy //copia linea n es numero de lineas a copia
+		p //pegarla debajo
+		x //elimina un caracter
+		dw //elimina palabra
+		D o d$ //elimina del cursor al fin de linea
+		DD //elimina toda la linea
+		u //deshacer
+		/palabra /busca palabra hacia delante
+		?cadena busca hacia atraz
+		n //busca las siguientes
+		MODO DE INSTERTAR //con i minuscula , con esc a comando
+		:w //graba los cambios
+		:q //salir
+		:q! //sale sn guardar
+		:wq//SALE GUARDANDO
+		:W nombre archivo.txt //guarda cn otro nombre
+COMANDOS
+	alias //lo definimos nosotros como atajo ejm ls es alias
+		se ejecuta antes que todos
+		type ls
+			ls es un alias de ´ls --color=auto´
+		/bin/ls //ejecuto ruta completa del comando
+		/usr/bin/ls //tambien es valida
+		alias //comando para ver cuales son los alias del sis
+		CREANDO COMANDOS PROPIOS	
+			//DESAPARECE AL CERRAR SESION DE TERMINAL
+			psw; ls; clear; //mas de un comando en la linea con ;
+			type mostrar //no encontrado porlot se puede crear
+			alias mostrar=´pwd;ls -1o´
+			type mostrar
+			unalias mostrar //eliminar alias
+			//DESAPARECE AL CERRAR SESION DE TERMINAL
+			ls -a //presenta entorno de bash
+			archivo .bashrc //lo lee el sist al partir entorno
+			para hacer el alias permanente
+			edicion del archivo 
+			nano .bashrc
+				agrego en la primera linea
+				alias mostrar=´pwd;ls -1o´
+				reiniciar terminal
+
+	funcion de shell
+		para tareas repetidas
+	integrado shell //en ram
+		cd
+		pwd
+		type pwd //es una orden interna del interprete de ordenes
+		compgen -b //lista los integrados
+		enable  //muestra la lista
+	programa ejecutable
+		binarios compilados de c c++ python...
+		which ls //muestra ubicacion exacta del archivo de comando
+			/usr/bin/ls
+		which pwd //es comando integrado y aveces ademas ejecutable
+		type pwd //
+			pwd es una orden interna del interprete de ordenes
+
+		help cd //entrega la info de sintaxis del comando interno
+			[] es opcional
+			| es excluyentte "or"
+		which mv // es ejecutable en /usr/bin/mv
+		mv --help //ayuda para el archivo ejecutable
+		man mv //manual del programa formal
+			para integrados
+			para ejecutables 
+		SECCIONES
+			1 comandos  //ls passwd
+			2 llamadas a sistemas en apps
+			3 funciones de biblioteca de c con interfaces
+			4 dispositivos y archivos especiales
+			5 convenciones y formato de archivo
+			6 juegos y diversiones como protectores de pant
+			7 varios
+			8 herramientas de admin del sist y demonios 
+
+			man 5 passwd //seccion 5
+			BUSCAR EN MANUALES
+				presenta las listas donde esta y las secciones
+					apropos who // w(1)
+				es equivalente a
+					man -k who
+				buscar si esta en manual y en que seccion
+					whatis ls	
+MAS COMANDOS
+	ls > listado.txt		rutadestino/
+	cp -r directorio/ directorio2
+	cp -r directorio/ ../dirsuperior
+	mv archivo archivocopia
+	mv directorio/ directorionuevo/
+	mv directorio ruta/directorio
+	mv carpeta ../carpetasuperior 
+	mv -v carpeta nuevonombrecarpeta
+
+	rm archivoaborrar //se elimina archivo
+	rmdir carpetaborrarvacia	
+	rm -r carpetaconcontenido 
+CANALIZACIONES combinar comandos 
+	stdein //entrada estandar al escribir en el prompt
+	stdout //salida estandar datos que linux escribe como salida
+	es combinable la salida como entrada con | ¨simbolo de pipe¨
+	ejem:
+		ls -l //presenta todo de golpe
+		ls -l /etc/ | less //presenta en formato les por pagina y linea
+
+		ls | wc -l //da el nro lineas osea de directorios
+
+		ls | cat //solo los nombres
+
+		head //imprime encabezado de 10 1eras lineas
+		head -n3 //imprime solo 3 lineas del encabez
+		head -n3 | wc w- //cuenta nro de palabras de ls 3 1eras filas	
+
+		ls /etc | head -n5 //imprime solo las 5 1eras de encabezado
+	
+		cut //imprime 1 o mas columnas de un archivo 
+		cut -f2 empleados.txt //imprime segunda columna
+			empleado tiene los campos separados por indentacion
+		cut -f2,3 empleados.txt //imprime segunda columna y terecer
+		cut -f2 empleados.txt | head n2 //impri	me solo 2 encabezados
+	
+		cut -c1,2,3,4 empleados.txt //imprime los 4 1eros caracters del archivo
+ 		cut -c1-4 empleados.txt //imprime los 4 1eros caracters del archivo
+		busca textos en un archivo
+			grep cotapo empleados.txt //lineas que continen este apellido
+			grep -v cotapo empleados.txt //excluye lineas que continen este apellido
+			grep cotapo *.txt //busca en todos los txt
+		ejem
+			ls -l /etc | cut -c1 //aisla 1er caracterde la columnaa
+			ls -l /etc | cut -c1 | grep d //filtra lineas con g
+			ls -l /etc | cut -c1 | grep d | wc -l //y cuenta las lineas
+	otro ejem
+		cat /etc/passwd
+		head -n3 /etc/passwd //muestra caenas separadas por :
+		cut -d: -f1 /etc/passwd //muestra todos los usuarios
+			delimitado por : de la 1era columna
+		para saber si tiene cuenta un usuario
+			cut -d: -f1 /etc/passwd |grep -w janvera //solo los con palabra janvera
+
+	ordena lineas
+		sort empleados.txt //ordena en orden alfabetico
+		sort empleados.txt empleados1.txt //ordena varios archivos
+		sort empleados* //con comodin
+		sort empleados?.txt //comodin ? remplaza solo 1 caracter
+		sort text1 text2 text3
+		sort text? //toma ambos sin extencion
+		sort text[1,2,3] //ordena los 3 
+		sort text[1-3] //ordena los 3 
+		sort text10 text20
+ 		sort text?? //toma ambos sin extencion
+		sort -r empleados.txt 		
+			
+			cut -f2 empleados.txt //presenta 2da col desordenada
+			cut -f2 empleados.txt | sort
+			cut -f4 empleados.txt | sort | head -n1 //edad mas baja
+			cut -f4 empleados.txt | sort -r | head -n1 //edad mas alta
+	elimina repeticiones
+		letras.txt //letras repetidas en una sola columna 
+		uniq letras.txt //elimina las repetidas adyacentes
+		unic -c letras.txt //indica cuantas letras
+		//ordeno primero
+		sort letras.txt
+		sort letras.txt | uniq -c
+CREANDO PERSISTENCIA EN KALILINUX
+		US & psw : kali
+		Mover la Máquina Virtual al Pendrive:
+			Copia la carpeta de la máquina virtual 
+			(generalmente ubicada en tu carpeta de 
+			documentos o en la ubicación que 
+			especificaste durante la creación) 
+			a tu pendrive.
+		Ejecutar la Máquina Virtual desde el Pendrive:
+			copie directorio vmware al pendrive para ejecutar 
+			desde elpendrive
+	
+	!!NO FUNCIONO EN PENDRIVE TAMPOCO EN DISCO DURO!!
+	SOLO FUNCIONO CON EL PENDRIVE QUE HIZE DE RUFUS
+ESTABLECER SUPERUSUARIO
+			sudo passwd root //free
+			//se ingreso 2 veces
+		Cambiar a la Cuenta de Root
+			whoami //kali
+			su -
+			whoami //root
+		Crear el Nuevo Usuario:
+			sudo adduser janvera
+		agregar el nuevo usuario al grupo sudo, 
+		lo que le dará permisos de superusuario.
+			sudo usermod -aG sudo nuevousuario
+
+		Cambiar al Nuevo Usuario:
+			su - nuevousuario
+		Verificar Privilegios de Superusuario:
+			sudo whoami
+		abrir el editor de sudoers:
+			sudo visudo
+			Asegúrate de que hay una línea similar a esta:
+			root ALL=(ALL:ALL) ALL
+		Si deseas que el nuevo usuario pueda ejecutar 
+		comandos sudo sin necesidad de ingresar 
+		la contraseña cada vez
+			sudo visudo
+			Agrega la siguiente línea al final del archivo
+			nuevousuario ALL=(ALL) NOPASSWD: ALL
+			Guardar y Salir
+CREANDO CARPETAS echo 
+	mkdir {01..12}-{2019..2021}
+		#GENERO ESTAS CARPETAS
+		01-2019
+		01-2020
+		01-2021
+		02-2019
+		02-2020
+		02-2021
+		03-2019
+		03-2020
+		03-2021
+		04-2019
+		04-2020
+		04-2021
+		05-2019
+		05-2020
+		05-2021
+		06-2019
+		06-2020
+		06-2021
+		07-2019
+		07-2020
+		07-2021
+		08-2019
+		08-2020
+		08-2021
+		09-2019
+		09-2020
+		09-2021
+		10-2019
+		10-2020
+		10-2021
+		11-2019
+		11-2020
+		11-2021
+		12-2019
+		12-2020
+		12-2021
+VARIABLES DE ENTORNO
+	use 
+	echo $USER
+	echo $PATH
+	env //da la lista de variales de entorno
+	echo $(ls) //ejecuta la variable de entorno listando 
+	ls -l $(which ls) //lista donde esta la ruta de ls
+		equivale a 
+			ls -l ´which ls´
+	CALCULA con expansiones aritmeticas
+		solo con numeros enteros
+		echo $((3+5)) //8
+		echo $(((3**3)+2)) //29  anidando
+EXPANSIONES detalles 
+	la presencia de espacios son separadores
+	entonces le pone comilla 
+	 mkdir mis doc //creo dos directorios
+	 rmdir mis doc //elimino los dos dir 
+	 mkdir "mis docs"
+	 cd "mis docs" 
+	 "echo "el valor es $50" //no pone $50 
+	 echo "esto es    1" //funciona
+	 CALENDARIO 
+	 	cal //deberia devolver el calendario
+			no se encontro el comando 
+			sudo apt install cal
+			sudo apt update
+			//no fue posible instalar cal 
+	' ' comillas simples cancelan expansiones todas
+	echo '/' # /
+	EXLUYE LOS ocultos
+	echo .[!.]*
+	echo ~janvera //~ es f5 en el terminal //alt 126 
+	touch archivo{1,2,3,4}.txt 
+	echo archivo{1,2,3,4}.txt 
+		encuentra todos los archivo1.txt archivo2.txt..
+	touch archivo{1..9}.txt //crea los arch 
+	tambien {01..10}
+	touch {a..e}
+	touch {z..f}
+	rm {a..z}
+	ANIDADP
+	echo {{1..5},{a..d}}.txt
+		//12345abcd
+PERMISOS 	
+	sudo //es para permisos de superusuario
+	sudo ls ~kali //lista desde la raiz del usuario
+	sudo 1 ~kali
+
+	solo propietario o superusuario
+	pueden cambiar el modo de un archivo o directorio 
+	PERMISOS PREDETERMINADOS
+		no son seguros
+		al crear archivo por omision se crean los permisos 
+			>prueba
+			ls -l prueba //por omision -rw-rw-r--
+				-rw-rw-r-- 1 janvera janvera 0 jun 15 10:01 prueba
+				equivale a 6 6 4
+		al crear directorio por omision to2 los permisos 
+			mkdir pruebas
+			ls -l pruebas //total 0
+			ls -ld pruebas 
+				drwxrwxr-x 2 janvera janvera 4096 jun 15 10:04 pruebas
+				equivale a 7 7 5
+		PARA CORREJIR ESTO 
+			umask
+				0002
+				0 	0			0					2
+					↓			↓					↓
+					propietario	propietario grupo	mundo /otros
+			es posible cambiar umask quitando escritura a grupo y mundo
+					umask 0022 //asignamos quitando 
+					umask
+							0022 //valor de u mask temporal
+					mkdir pruebas
+					>pruebas/archivo //creamos archivo
+					ls -ld pruebas pruebas/archivo
+								//ahora grupo y mundo sin escritura
+									EL DIRECTORIO
+								drwxr-xr-x 2 janvera janvera 4096 jun 15 10:26 pruebas
+									EL ARCHIVO
+								-rw-r--r-- 1 janvera janvera    0 jun 15 10:26 pruebas/archivo
+					
+					NO ES PERMANENTE AL SALIR DEL TERMINAL 
+					PARA HACERLO PERMANENTE
+						modificar archivo .bashrc en la raiz
+							echo /home/janvera/.* //mustra todos los ocultos 
+							nano /home/janvera/.bashrc //edita archivo oculto
+								al editar archivo agregamos guardando los cbios
+									umask 0022
+						? no se guardn los cambios posible reiniciar
+		PERMISOS EN LOS EJECTUTABLES 
+			POR OMISION 
+				ls -l /usr/bin/passwd  //es un ejecutable en el sis
+					-rwsr-xr-x 1 root root 59976 feb  6 09:54 /usr/bin/passwd
+					//aparece una s que indica que to2 pueden 
+					ejecutarlo como super usuario
+					PARA ACTIVAR LA S EN LA EJECUCION 
+						> prueba 
+						ls -l prueba
+							-rw-rw-r-- 1 janvera janvera 0 jun 15 10:57 prueba
+						chmod 4777 prueba 
+						ls -l prueba
+							rwsrwxrwx 1 janvera janvera 0 jun 15 10:57 prueba
+		PERMISO setgid 
+			octal  2000
+			adminsitra los privilegios del grupo y directorio 
+			para directorios compartidos 
+		PERMISO stiky
+			octal 1000
+			en directorio para que 
+				no eliminen
+				o cambien el nombre del archivo 
+				EJEMPLO 
+					ls -l /tmp 
+						hay archivo con t en los permisos
+						drwxrwxrwt 2 root    root    4096 jun 15 09:37
+						la t evita que se elimine el archivo
+	REPRESENTACION OCTALES
+		binario 0 0 1 de base 2
+		binario 0,  1,	10,	100,101,110,111,1000,1001,1010,1011
+			↓	↓	↓	↓
+		decimal 0,	1,	2+1, 4,  5   6   7    8   9    10    11	
+
+		numeros octales 
+		numero octal es base 8 va del 0 al 7
+		octal	binario	filemode
+		0		000		---
+		1		001		--x
+		2		010		-w-	
+		3		011		-wx
+		4		100		r--
+		5		101		r-x
+		6		110		rw-
+		7		111		rwx
+
+		>prueba 
+		ls -l prueba // -rw-r--r--
+						
+		-	rw-		r--		r--
+		arch 6		4		4 
+			prop	grupo	otros
+
+		CAMBIANDO EL MODO DEL ARCHIVO
+			chmod 7		0		0
+				↓		↓		↓
+				rwx		---		---
+			chmod 700 prueba
+			ls -l prueba 
+			-rwx ------ 1 kali 19 jun 14 21:35 prueba
+	REPRESENTACION SIMBOLICA
+		u	usurio propietario de archivo o directorio 
+		g	propietario de grupo al que pertenece el archivo o directorio
+		o	otros usuarios del sistema (mundo) 
+		a	todos los usuarios del sistema (ugo)
+
+		operaciones 
+			+ agregar permiso
+			- quitar permiso 
+			= aplicar 
+		
+		CAMBIANDO EL MODO DEL ARCHIVO	
+			chmod u-x prueba // quitar permiso de ejecucion al propietario
+			ls -l prueba // -rw----- 1 kali kali 19 jun 
+
+			agregando lectura y escritura 
+				al grupo del propietario 
+				chmod g+rw prueba
+				ls -l // -rw-rw----- kali....
+			quitar escritura al 
+				usuario propietario 
+				y al propietario de grupo
+				chmod ug-w prueba
+				ls -l prueba // -r--r---1 kali ...
+			agregar a todos 
+				escritura y ejecucion
+				y a otros mundo agregar lectura  
+				chmod a+wx,o+r prueba
+				ls -l prueba //-rwxrwxrwx 1 kali ...
+			si no especifico a quien entonces es a todos
+				chmod -x prueba
+				ls -l prueba //-rw-rw-rw- 1 kali ..... 
+			igual establece los permisos quita los demas
+				agrego ejecucion en propietario 
+				y en el grupo 
+				chmod ug=x prueba  
+				ls -l prueba //- --x --x rw- 1 kali kali ...
+			atributos con ugo y a mundo
+				chmod ugoa=rwx prueba
+				ls -l prueba // - rwxrwxrwx 1 kali ....	
+			quitando a uga 
+				chmod uga=--- prueba
+				ls -l prueba // ----------- 1 kali .....
+TOMANDO OTRAS IDENTIDADES DE USUARIO 
+	para probar cuentas 
+	y probar identidad alternativa 
+		su //permite toma la id
+		su yonarev //yonarev ya esta creado
+			yonarev@janvera-VirtualBox:/home/janvera$
+		exit //para salir del prompt
+		su -l yonarev //quedo en la raiz
+		pwd
+			/home/yonarev
+		su - yonarev  //es lo mismo
+PERMISO SUDO 
+	DE SUPERUSUARIO 
+	janvera@janvera-VirtualBox:~$ ls /root
+		ls: no se puede abrir el directorio '/root': Permiso denegado
+	janvera@janvera-VirtualBox:~$ sudo ls /root
+	[sudo] contraseña para janvera:  //SE INGRESA PSW
+		snap //resultado
+	VIENDO PRIVILEGIOS 
+		sudo -l
+			Coincidiendo entradas por defecto para janvera en janvera-VirtualBox:
+				env_reset, mail_badpass,
+				secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin,
+				use_pty
+			El usuario janvera puede ejecutar los siguientes comandos en janvera-VirtualBox:
+				(ALL : ALL) ALL
+	CAMBIANDO EL PROMPT 
+		(janvera㉿kali)-[~]sudo -i
+		(root㉿kali)-[~] exit
+		---------
+
+		janvera@janvera-VirtualBox:~$ sudo -i
+		root@janvera-VirtualBox:~#  //se inicio cn usuario root
+		exit //para volver
+		cerrar sesión
+		janvera@janvera-VirtualBox:~$ 
+		-----
+		sudo su //para cambiar denuevo a root
+			(root㉿kali)-[~] sudo -i
+			sudo -i
+
+
+		root@janvera-VirtualBox:/home/janvera# 
+CAMBIAR PROPIETARIO Y PROPIETARIO DE GRUPO 
+	chown
+	ES con privilegios de superusuario 
+	root@janvera-VirtualBox:/home/janvera# ls /home
+	janvera  yonarev //hay 2 usuarios
+
+	EJERCICIO 
+		janvera@janvera-VirtualBox:/$ su yonarev
+		Contraseña: 
+		yonarev@janvera-VirtualBox:/$ ls
+		bin    dev   lib    libx32      mnt   root  snap      sys  var
+		boot   etc   lib32  lost+found  opt   run   srv       tmp
+		cdrom  home  lib64  media       proc  sbin  swapfile  usr
+		yonarev@janvera-VirtualBox:/$ cd home
+		yonarev@janvera-VirtualBox:/home$ cd yonarev
+		yonarev@janvera-VirtualBox:~$ mkdir ejerciciosyonar
+		yonarev@janvera-VirtualBox:~$ cd ejerciciosyonar/
+		yonarev@janvera-VirtualBox:~/ejerciciosyonar$ > yonar.txt
+		yonarev@janvera-VirtualBox:~/ejerciciosyonar$ ls
+		yonar.txt
+		yonarev@janvera-VirtualBox:~/ejerciciosyonar$ ls -l yonar.txt
+			//yonarev es propietario 
+				del archivo
+				y del grupo
+		-rw-rw-r-- 1 yonarev yonarev 0 jun 15 11:55 yonar.txt
+		yonarev@janvera-VirtualBox:~/ejerciciosyonar$ 
+		CAMBIAMOS PROPIETARIO a janvera
+			sudo chown janvera yonar.txt
+				root@janvera-VirtualBox:/home/yonarev/ejerciciosyonar# ls -l yonar.txt 
+					-rw-rw-r-- 1 janvera yonarev 0 jun 15 11:55 yonar.txt
+					el propietario del archivo es janvera 
+					yonarev es prop del grupo 
+		CAMBIAMOS A UN SOLO PROPIETARIO DE ARCH Y GRUP
+			root@janvera-VirtualBox:/home/yonarev/ejerciciosyonar# ls -l yonar3.txt 
+				-rw-r--r-- 1 root root 0 jun 15 15:20 yonar3.txt
+				-rw-r--r-- 1 yonarev yonarev 0 jun 15 15:20 yonar3.txt
+		CAMBIAMOS SOLO PROP DE GRUPO 
+			sudo chown :juan yonar3.txt	
+			//-rw-r--r-- 1 yonarev juan    0 jun 15 15:20 yonar3.txt
+		COPIANDO ARHCIVO A USUARIO raiz
+			sudo cp yonar3.txt ~juan
+			cd ~juan
+			ls -l
+			ls -l ~juan
+			QUEDA EL ARCHIVO CON PROPIETARIO EL QUE COPIA
+			-	rw-r--r-- 1 root root 0 jun 15 15:29 yonar3.txt
+			sudo chown juan: ~juan/yonar3.txt
+			ls -l ~juan/yonar3.txt 
+				-rw-r--r-- 1 juan juan 0 jun 15 15:29 /home/juan/yonar3.txt
+
+
+
+
+				
+
+		CAMBIANDO PROPIETARIO DE GRUPO 
+			cambiamos a us yonarev 
+			root@janvera-VirtualBox:/home/yonarev/ejerciciosyonar# su yonarev
+			yonarev@janvera-VirtualBox:~/ejerciciosyonar$ 
+			creamos archivo y es porpietario yonarev
+			> yonar2.txt
+			yonarev@janvera-VirtualBox:~/ejerciciosyonar$ ls -l yonar2.txt 
+			-rw-rw-r-- 1 yonarev yonarev 0 jun 15 13:18 yonar2.txt
+			CREANDO otro USUARIO
+					1ero a superusuario
+					yonarev@janvera-VirtualBox:~/ejerciciosyonar$ su -
+					Contraseña: 
+					sudo adduser juan
+					Añadiendo el usuario `juan' ...
+						Añadiendo el nuevo grupo `juan' (1002) ...
+						Añadiendo el nuevo usuario `juan' (1002) con grupo `juan' ...
+						Creando el directorio personal `/home/juan' ...
+						Copiando los ficheros desde `/etc/skel' ...
+						Nueva contraseña: 
+						CONTRASEÑA INCORRECTA: La contraseña no supera la verificación de diccionario - Está basada en una palabra del diccionario.
+						Vuelva a escribir la nueva contraseña: 
+						passwd: contraseña actualizada correctamente
+						Cambiando la información de usuario para juan
+						Introduzca el nuevo valor, o presione INTRO para el predeterminado
+							Nombre completo []: juan
+							Número de habitación []: 
+							Teléfono del trabajo []: 
+							Teléfono de casa []: 
+							Otro []: 
+						¿Es correcta la información? [S/n] s
+						root@janvera-VirtualBox:~# 
+			AL ARCHIVO yonar2.txt LE DAMOS 
+				PRPIETARIO yonarev 
+				DE GRUPO juan 
+					//sudo chown janvera:juan yonar2.txt		
+					root@janvera-VirtualBox:/home/yonarev/ejerciciosyonar# ls -l yonar2.txt
+					-rw-rw-r-- 1 yonarev yonarev 0 jun 15 13:18 yonar2.txt
+					root@janvera-VirtualBox:/home/yonarev/ejerciciosyonar# sudo chown janvera:juan yonar2.txt
+					root@janvera-VirtualBox:/home/yonarev/ejerciciosyonar# ls -l yonar2.txt
+					-rw-rw-r-- 1 janvera juan 0 jun 15 13:18 yonar2.txt
+						janvera es propietario 
+						juan es de grupo
+ADMINISTRAR USUARIOS
+	CREAR CUENTA DE USUARIO 
+		sudo adduser antonima
+		root@janvera-VirtualBox:/home/yonarev# sudo adduser antonima
+			Añadiendo el usuario `antonima' ...
+			Añadiendo el nuevo grupo `antonima' (1003) ...
+			Añadiendo el nuevo usuario `antonima' (1003) con grupo `antonima' ...
+			Creando el directorio personal `/home/antonima' ...
+			Copiando los ficheros desde `/etc/skel' ...
+			Nueva contraseña:  /Contreras
+			....
+	VER USUARIOS DEL SISTEMA 
+		ls /home	
+			antonima  janvera  juan  yonarev
+	CAMBIAR CONTRASEÑA 
+		sudo passwd antonima
+		Vuelva a escribir la nueva contraseña: //Contrera$
+		passwd: contraseña actualizada correctamente
+	VER A QUE GRUPO UNO PERTENECE 
+		root@janvera-VirtualBox:/home/yonarev# groups
+			root
+		groups janvera
+			janvera : janvera adm cdrom sudo dip plugdev lpadmin lxd sambashare
+		groups yonarev
+			groups yonarev
+	AGREGANDO USUARIO A OTRO GRUPO	
+		sudo adduser janvera sudo	
+		sudo adduser yonarev sudo
+			Añadiendo al usuario yonarev al grupo sudo
+			Hecho.
+		groups yonarev
+			yonarev : yonarev sudo
+PROCESOS
+	INSTANCIA UNICA DE UN PROGRAMA
+	programado por la cpu 
+	pid es identificacion del proceso	
+	ID unico 
+	para controlar y rastrear recursos 
+	CPU con mas nucleos puede procesar simultaneo
+	PROCESOS DE USUARIO 
+		creados por el usuario final	
+		programas del u
+	PROCESOS DEL SISTEMA SON DEMONIOS 
+		en 2do plano sin interfaz de usuario
+		al arrancar sop 
+		todos estos procesos parten de 
+			proceso init en sis antiguos
+			proceso systemd en sist nuevos /d de demonio 
+		Proceso perent o padre 
+			inicia otros procesos child hijos
+			ppid = pid del proceso padre
+		VISUALIZAR PROCESOS 
+			root@janvera-VirtualBox:/home/yonarev# ps
+				PID TTY          TIME CMD
+				4078 pts/0    00:00:00 su
+				4079 pts/0    00:00:00 bash //shel bash 
+				8045 pts/0    00:00:00 ps	//proceso que ingresamos
+				
+				PID: Identificador único de cada programa en ejecución.
+				TTY: Terminal virtual asociada al proceso (pts/0 indica acceso remoto).
+				TIME: Tiempo de CPU utilizado por el proceso desde su inicio (00:00:00 indica inicio reciente).
+				CMD: Comando que inició el proceso:
+			TODOS LOS PROCESOS
+				root@janvera-VirtualBox:/home/yonarev# ps x
+				    PID TTY      STAT   TIME COMMAND
+      				   1 ?        Ss     0:07 /sbin/init splash
+						//? indica que no son de terminal
+					STAT  es estado actual del proceso
+						Ss esta durmiendo sleep esperando teclado
+						R+ esta en ejecucion
+
+						R: El proceso está en ejecución.
+						S: El proceso está en estado de suspensión (sleep).
+						D: El proceso se encuentra en estado de espera inactivo (disk wait).
+						Z: El proceso está en estado zombie (un proceso que ha terminado pero aún no ha sido liberado por su padre).
+						T: El proceso está en estado de seguimiento (traced).
+						W: El proceso está en espera de un evento de E/S (waiting in I/O).
+						X: El proceso está en estado de ejecución no interrumpible (un proceso que no puede ser interrumpido por señales).
+						P: El proceso está en estado de espera de un hijo (parent process waiting for a child).
+						+: El proceso se encuentra en estado de subproceso multihilo (multi-threaded subprocess).
+						l: El proceso tiene un líder de sesión controlante (has a controlling session leader).
+						<: El proceso está en estado de ejecución en segundo plano (running in background).
+						>: El proceso tiene redirección de entrada o salida estándar (has standard input or output redirected).
+						=: El proceso tiene redirección de error estándar (has error output redirected). 
+			TODOS LOS PROCESOS RESUMEN
+			root@janvera-VirtualBox:/home/yonarev# ps x
+				PID TTY      STAT   TIME COMMAND
+				1 ?        Ss     0:07 /sbin/init splash
+				2 ?        S      0:00 [kthreadd]
+				3 ?        I<     0:00 [rcu_gp]
+				4 ?        I<     0:00 [rcu_par_gp]
+				5 ?        I<     0:00 [slub_flushwq]
+				6 ?        I<     0:00 [netns]
+				7 ?        I      0:00 [kworker/0:0-events]
+				8 ?        I<     0:00 [kworker/0:0H-kblockd]
+				11 ?        I<     0:00 [mm_percpu_wq]
+				12 ?        I      0:00 [rcu_tasks_kthread]
+				13 ?        I      0:00 [rcu_tasks_rude_kthread]
+				14 ?        I      0:00 [rcu_tasks_trace_kthread]
+				15 ?        S      0:00 [ksoftirqd/0]
+				16 ?        I      0:09 [rcu_preempt]
+				17 ?        S      0:00 [migration/0]
+				18 ?        S      0:00 [idle_inject/0]
+				19 ?        S      0:00 [cpuhp/0]
+				20 ?        S      0:00 [cpuhp/1]
+				21 ?        S      0:00 [idle_inject/1]
+				22 ?        S      0:00 [migration/1]
+				23 ?        S      0:01 [ksoftirqd/1]
+				26 ?        S      0:00 [kdevtmpfs]
+				27 ?        I<     0:00 [inet_frag_wq]
+				29 ?        S      0:00 [kauditd]
+				30 ?        S      0:00 [khungtaskd]
+				31 ?        S      0:00 [oom_reaper]
+				33 ?        I<     0:00 [writeback]
+				34 ?        S      0:00 [kcompactd0]
+				35 ?        SN     0:00 [ksmd]
+				36 ?        SN     0:00 [khugepaged]
+				37 ?        I<     0:00 [kintegrityd]
+				38 ?        I<     0:00 [kblockd]
+				39 ?        I<     0:00 [blkcg_punt_bio]
+				40 ?        I<     0:00 [tpm_dev_wq]
+				41 ?        I<     0:00 [ata_sff]
+				42 ?        I<     0:00 [md]
+				43 ?        I<     0:00 [md_bitmap]
+				44 ?        I<     0:00 [edac-poller]
+				45 ?        I<     0:00 [devfreq_wq]
+				46 ?        S      0:00 [watchdogd]
+				49 ?        S      0:04 [kswapd0]
+				50 ?        S      0:00 [ecryptfs-kthread]
+				51 ?        I<     0:00 [kthrotld]
+				52 ?        I<     0:00 [acpi_thermal_pm]
+				53 ?        S      0:00 [scsi_eh_0]
+				54 ?        I<     0:00 [scsi_tmf_0]
+				55 ?        S      0:00 [scsi_eh_1]
+				56 ?        I<     0:00 [scsi_tmf_1]
+				61 ?        I<     0:00 [kworker/1:1H-kblockd]
+				62 ?        I<     0:00 [mld]
+				63 ?        I<     0:00 [ipv6_addrconf]
+				70 ?        I<     0:00 [kstrp]
+				72 ?        I<     0:00 [kworker/u5:0]
+				76 ?        I<     0:00 [charger_manager]
+				121 ?        S      0:00 [scsi_eh_2]
+				122 ?        I<     0:00 [scsi_tmf_2]
+				152 ?        S      0:04 [jbd2/sda3-8]
+				153 ?        I<     0:00 [ext4-rsv-conver]
+				192 ?        S<s    0:01 /lib/systemd/systemd-journald
+				223 ?        S      0:00 [irq/18-vmwgfx]
+				224 ?        I<     0:00 [ttm]
+				245 ?        Ss     0:00 /lib/systemd/systemd-udevd
+				286 ?        I<     0:00 [cryptd]
+				289 ?        I      0:11 [kworker/u4:6-events_power_efficient]
+				638 ?        Ssl    0:00 /usr/libexec/accounts-daemon
+				639 ?        Ss     0:00 /usr/sbin/acpid
+				644 ?        Ss     0:00 /usr/sbin/cron -f -P
+				647 ?        Ssl    0:01 /usr/sbin/NetworkManager --no-daemon
+				655 ?        Ssl    0:00 /usr/sbin/irqbalance --foreground
+				657 ?        Ss     0:00 /usr/bin/python3 /usr/bin/networkd-dispa
+				661 ?        Ssl    0:01 /usr/libexec/polkitd --no-debug
+				662 ?        Ssl    0:00 /usr/libexec/power-profiles-daemon
+				671 ?        Ssl    1:13 /usr/lib/snapd/snapd
+				672 ?        Ssl    0:00 /usr/libexec/switcheroo-control
+				673 ?        Ss     0:00 /lib/systemd/systemd-logind
+				674 ?        Ssl    0:00 /usr/libexec/udisks2/udisksd
+				676 ?        Ss     0:00 /sbin/wpa_supplicant -u -s -O /run/wpa_s
+				730 ?        Ssl    0:00 /usr/sbin/ModemManager
+				735 ?        Ss     0:00 /usr/sbin/cupsd -l
+				740 ?        Ssl    0:00 /usr/bin/python3 /usr/share/unattended-u
+				741 ?        Ssl    0:02 /usr/bin/anydesk --service
+				760 ?        Ss     0:00 sshd: /usr/sbin/sshd -D [listener] 0 of 
+				763 ?        Ssl    0:00 /usr/sbin/gdm3
+				773 ?        Sl     0:00 gdm-session-worker [pam/gdm-autologin]
+				795 ?        Ssl    0:00 /usr/sbin/cups-browsed
+				797 ?        Ss     0:00 /usr/sbin/nmbd --foreground --no-process
+				895 ?        Ss     0:00 /usr/sbin/smbd --foreground --no-process
+				897 ?        S      0:00 /usr/sbin/smbd --foreground --no-process
+				898 ?        S      0:00 /usr/sbin/smbd --foreground --no-process
+				899 ?        S      0:00 /usr/lib/x86_64-linux-gnu/samba/samba-bg
+				972 ?        Ss     0:00 fusermount3 -o rw,nosuid,nodev,fsname=po
+				1243 ?        Ssl    0:00 /usr/libexec/upowerd
+				1312 ?        Ssl    0:09 /usr/libexec/packagekitd
+				1801 ?        Ssl    0:02 /usr/libexec/fwupd/fwupd
+				4078 pts/0    S      0:00 su -
+				4079 pts/0    S      0:00 -bash
+				5314 ?        I      0:05 [kworker/u4:1-events_unbound]
+				6889 ?        I<     0:01 [kworker/0:2H-kblockd]
+				7021 ?        I      0:00 [kworker/1:2-cgroup_destroy]
+				7491 ?        I      0:00 [kworker/0:1-events]
+				7588 ?        I      0:02 [kworker/u4:0-events_power_efficient]
+				7590 ?        I      0:00 [kworker/1:0-mm_percpu_wq]
+				8029 ?        I<     0:00 [kworker/1:2H-kblockd]
+				8579 ?        I      0:00 [kworker/0:2]
+				8759 pts/0    R+     0:00 ps x
+		ARBOL DE PROCESOS 
+			pstree	//presenta el arbol simple
+			root@janvera-VirtualBox:/home/yonarev# pstree
+				systemd─┬─ModemManager───2*[{ModemManager}]
+						├─NetworkManager───2*[{NetworkManager}]
+						├─accounts-daemon───2*[{accounts-daemon}]
+						├─acpid
+						├─anydesk───3*[{anydesk}]
+						├─avahi-daemon───avahi-daemon
+						├─colord───2*[{colord}]
+						├─cron
+						├─cups-browsed───2*[{cups-browsed}]
+						├─cupsd───2*[dbus]
+						├─dbus-daemon
+						├─fwupd───4*[{fwupd}]
+						├─gdm3─┬─gdm-session-wor─┬─gdm-wayland-ses─┬─gnome-session-b+++
+						│      │                 │                 └─2*[{gdm-wayland+
+						│      │                 └─2*[{gdm-session-wor}]
+						│      └─2*[{gdm3}]
+						├─geoclue───2*[{geoclue}]
+						├─gnome-keyring-d───3*[{gnome-keyring-d}]
+						├─irqbalance───{irqbalance}
+						├─2*[kerneloops]
+						├─networkd-dispat
+						├─nmbd
+						├─packagekitd───2*[{packagekitd}]
+						├─polkitd───2*[{polkitd}]
+						├─power-profiles-───2*[{power-profiles-}]
+						├─rsyslogd───3*[{rsyslogd}]
+						├─rtkit-daemon───2*[{rtkit-daemon}]
+						├─smbd─┬─cleanupd
+						│      ├─samba-bgqd
+						│      └─smbd-notifroot@janvera-VirtualBox:/home/yonarev# pstree
+				systemd─┬─ModemManager───2*[{ModemManager}]
+						├─NetworkManager───2*[{NetworkManager}]
+						├─accounts-daemon───2*[{accounts-daemon}]
+						├─acpid
+						├─anydesk───3*[{anydesk}]
+						├─avahi-daemon───avahi-daemon
+						├─colord───2*[{colord}]
+						├─cron
+						├─cups-browsed───2*[{cups-browsed}]
+						├─cupsd───2*[dbus]
+						├─dbus-daemon
+						├─fwupd───4*[{fwupd}]
+						├─gdm3─┬─gdm-session-wor─┬─gdm-wayland-ses─┬─gnome-session-b+++
+						│      │                 │                 └─2*[{gdm-wayland+
+						│      │                 └─2*[{gdm-session-wor}]
+						│      └─2*[{gdm3}]
+						├─geoclue───2*[{geoclue}]
+						├─gnome-keyring-d───3*[{gnome-keyring-d}]
+						├─irqbalance───{irqbalance}
+						├─2*[kerneloops]
+						├─networkd-dispat
+						├─nmbd
+						├─packagekitd───2*[{packagekitd}]
+						├─polkitd───2*[{polkitd}]
+						├─power-profiles-───2*[{power-profiles-}]
+						├─rsyslogd───3*[{rsyslogd}]
+						├─rtkit-daemon───2*[{rtkit-daemon}]
+						├─smbd─┬─cleanupd
+						│      ├─samba-bgqd
+						│      └─smbd-notifyd
+						├─snapd───9*[{snapd}]
+						├─sshd
+						├─switcheroo-cont───2*[{switcheroo-cont}]
+						├─systemd─┬─(sd-pam)
+						│         ├─at-spi2-registr───2*[{at-spi2-registr}]
+						│         ├─2*[chrome_crashpad───2*[{chrome_crashpad}]]
+						│         ├─chrome_crashpad───{chrome_crashpad}
+						│         ├─code─┬─code
+						│         │      ├─code───code───12*[{code}]
+						│         │      ├─code───12*[{code}]
+						│         │      ├─code───6*[{code}]
+						│         │      ├─2*[code───14*[{code}]]
+						│         │      ├─code───16*[{code}]
+						│         │      └─35*[{code}]
+						│         ├─dbus-daemon
+						│         ├─dconf-service───2*[{dconf-service}]
+						│         ├─evolution-addre───5*[{evolution-addre}]
+						│         ├─evolution-calen───8*[{evolution-calen}]
+						│         ├─evolution-sourc───3*[{evolution-sourc}]
+						│         ├─2*[gjs───4*[{gjs}]]
+						│         ├─gnome-session-b─┬─anydesk───7*[{anydesk}]
+						│         │                 ├─at-spi-bus-laun─┬─dbus-daemon
+						│         │                 │                 └─3*[{at-spi-b+
+						│         │                 ├─evolution-alarm───5*[{evolutio+
+						│         │                 ├─gsd-disk-utilit───2*[{gsd-disk+
+						│         │                 ├─update-notifier───3*[{update-n+
+						│         │                 └─3*[{gnome-session-b}]
+						│         ├─gnome-session-c───{gnome-session-c}
+						│         ├─gnome-shell─┬─Xwayland
+						│         │             ├─chrome─┬─2*[cat]
+						│         │             │        ├─chrome─┬─chrome───12*[{ch+
+						│         │             │        │        └─chrome─┬─chrome
+						│         │             │        │                 └─32*[{ch+
+						│         │             │        ├─chrome───chrome─┬─chrome─+++
+						│         │             │        │                 ├─3*[chro+
+						│         │             │        │                 ├─9*[chro+
+						│         │             │        │                 ├─chrome─+++
+						│         │             │        │                 └─2*[chro+
+						│         │             │        ├─chrome───8*[{chrome}]
+						│         │             │        ├─chrome───7*[{chrome}]
+						│         │             │        └─35*[{chrome}]
+						│         │             ├─gjs───5*[{gjs}]
+						│         │             └─13*[{gnome-shell}]
+						│         ├─gnome-shell-cal───5*[{gnome-shell-cal}]
+						│         ├─gnome-terminal───gnome-terminal.───3*[{gnome-ter+
+						│         ├─gnome-terminal-─┬─bash───su───bash─┬─less
+						│         │                 │                  └─pstree
+						│         │                 └─3*[{gnome-terminal-}]
+						│         ├─goa-daemon───3*[{goa-daemon}]
+						│         ├─goa-identity-se───2*[{goa-identity-se}]
+						│         ├─gsd-a11y-settin───3*[{gsd-a11y-settin}]
+						│         ├─gsd-color───3*[{gsd-color}]
+						│         ├─gsd-datetime───3*[{gsd-datetime}]
+						│         ├─gsd-housekeepin───3*[{gsd-housekeepin}]
+						│         ├─gsd-keyboard───3*[{gsd-keyboard}]
+						│         ├─gsd-media-keys───3*[{gsd-media-keys}]
+						│         ├─gsd-power───3*[{gsd-power}]
+						│         ├─gsd-print-notif───2*[{gsd-print-notif}]
+						│         ├─gsd-printer───2*[{gsd-printer}]
+						│         ├─gsd-rfkill───2*[{gsd-rfkill}]
+						│         ├─gsd-screensaver───2*[{gsd-screensaver}]
+						│         ├─gsd-sharing───3*[{gsd-sharing}]
+						│         ├─gsd-smartcard───3*[{gsd-smartcard}]
+						│         ├─gsd-sound───3*[{gsd-sound}]
+						│         ├─gsd-wacom───3*[{gsd-wacom}]
+						│         ├─gsd-xsettings───3*[{gsd-xsettings}]
+						│         ├─gvfs-afc-volume───3*[{gvfs-afc-volume}]
+						│         ├─gvfs-goa-volume───2*[{gvfs-goa-volume}]
+						│         ├─gvfs-gphoto2-vo───2*[{gvfs-gphoto2-vo}]
+						│         ├─gvfs-mtp-volume───2*[{gvfs-mtp-volume}]
+						│         ├─gvfs-udisks2-vo───3*[{gvfs-udisks2-vo}]
+						│         ├─gvfsd─┬─gvfsd-dnssd───2*[{gvfsd-dnssd}]
+						│         │       ├─gvfsd-network───3*[{gvfsd-network}]
+						│         │       ├─gvfsd-trash───2*[{gvfsd-trash}]
+						│         │       └─2*[{gvfsd}]
+						│         ├─gvfsd-fuse───5*[{gvfsd-fuse}]
+						│         ├─gvfsd-metadata───2*[{gvfsd-metadata}]
+						│         ├─ibus-portal───2*[{ibus-portal}]
+						│         ├─ibus-x11───2*[{ibus-x11}]
+						│         ├─nautilus───5*[{nautilus}]
+						│         ├─pipewire───{pipewire}
+						│         ├─pipewire-media-───{pipewire-media-}
+						│         ├─pulseaudio───3*[{pulseaudio}]
+						│         ├─sh───ibus-daemon─┬─ibus-engine-sim───2*[{ibus-en+
+						│         │                  ├─ibus-extension-───3*[{ibus-ex+
+						│         │                  ├─ibus-memconf───2*[{ibus-memco+
+						│         │                  └─2*[{ibus-daemon}]
+						│         ├─snapd-desktop-i───snapd-desktop-i───3*[{snapd-de+
+						│         ├─tracker-extract───5*[{tracker-extract}]
+						│         ├─tracker-miner-f───6*[{tracker-miner-f}]
+						│         ├─xdg-desktop-por───6*[{xdg-desktop-por}]
+						│         ├─2*[xdg-desktop-por───3*[{xdg-desktop-por}]]
+						│         ├─xdg-document-po─┬─fusermount3
+						│         │                 └─6*[{xdg-document-po}]
+						│         └─xdg-permission-───2*[{xdg-permission-}]
+						├─systemd-journal
+						├─systemd-logind
+						├─systemd-oomd
+						├─systemd-resolve
+						├─systemd-timesyn───{systemd-timesyn}
+						├─systemd-udevd
+						├─udisksd───4*[{udisksd}]
+						├─unattended-upgr──root@janvera-VirtualBox:/home/yonarev# pstree
+				systemd─┬─ModemManager───2*[{ModemManager}]
+						├─NetworkManager───2*[{NetworkManager}]
+						├─accounts-daemon───2*[{accounts-daemon}]
+						├─acpid
+						├─anydesk───3*[{anydesk}]
+						├─avahi-daemon───avahi-daemon
+						├─colord───2*[{colord}]
+						├─cron
+						├─cups-browsed───2*[{cups-browsed}]
+						├─cupsd───2*[dbus]
+						├─dbus-daemon
+						├─fwupd───4*[{fwupd}]
+						├─gdm3─┬─gdm-session-wor─┬─gdm-wayland-ses─┬─gnome-session-b+++
+						│      │                 │                 └─2*[{gdm-wayland+
+						│      │                 └─2*[{gdm-session-wor}]
+						│      └─2*[{gdm3}]
+						├─geoclue───2*[{geoclue}]
+						├─gnome-keyring-d───3*[{gnome-keyring-d}]
+						├─irqbalance───{irqbalance}
+						├─2*[kerneloops]
+						├─networkd-dispat
+						├─nmbd
+						├─packagekitd───2*[{packagekitd}]
+						├─polkitd───2*[{polkitd}]
+						├─power-profiles-───2*[{power-profiles-}]
+						├─rsyslogd───3*[{rsyslogd}]
+						├─rtkit-daemon───2*[{rtkit-daemon}]
+						├─smbd─┬─cleanupd
+						│      ├─samba-bgqd
+						│      └─smbd-notifyd
+						├─snapd───9*[{snapd}]
+						├─sshd
+						├─switcheroo-cont───2*[{switcheroo-cont}]
+						├─systemd─┬─(sd-pam)
+						│         ├─at-spi2-registr───2*[{at-spi2-registr}]
+						│         ├─2*[chrome_crashpad───2*[{chrome_crashpad}]]
+						│         ├─chrome_crashpad───{chrome_crashpad}
+						│         ├─code─┬─code
+						│         │      ├─code───code───12*[{code}]
+						│         │      ├─code───12*[{code}]
+						│         │      ├─code───6*[{code}]
+						│         │      ├─2*[code───14*[{code}]]
+						│         │      ├─code───16*[{code}]
+						│         │      └─35*[{code}]
+						│         ├─dbus-daemon
+						│         ├─dconf-service───2*[{dconf-service}]
+						│         ├─evolution-addre───5*[{evolution-addre}]
+						│         ├─evolution-calen───8*[{evolution-calen}]
+						│         ├─evolution-sourc───3*[{evolution-sourc}]
+						│         ├─2*[gjs───4*[{gjs}]]
+						│         ├─gnome-session-b─┬─anydesk───7*[{anydesk}]
+						│         │                 ├─at-spi-bus-laun─┬─dbus-daemon
+						│         │                 │                 └─3*[{at-spi-b+
+						│         │                 ├─evolution-alarm───5*[{evolutio+
+						│         │                 ├─gsd-disk-utilit───2*[{gsd-disk+
+						│         │                 ├─update-notifier───3*[{update-n+
+						│         │                 └─3*[{gnome-session-b}]
+						│         ├─gnome-session-c───{gnome-session-c}
+						│         ├─gnome-shell─┬─Xwayland
+						│         │             ├─chrome─┬─2*[cat]
+						│         │             │        ├─chrome─┬─chrome───12*[{ch+
+						│         │             │        │        └─chrome─┬─chrome
+						│         │             │        │                 └─32*[{ch+
+						│         │             │        ├─chrome───chrome─┬─chrome─+++
+						│         │             │        │                 ├─3*[chro+
+						│         │             │        │                 ├─9*[chro+
+						│         │             │        │                 ├─chrome─+++
+						│         │             │        │                 └─2*[chro+
+						│         │             │        ├─chrome───8*[{chrome}]
+						│         │             │        ├─chrome───7*[{chrome}]
+						│         │             │        └─35*[{chrome}]
+						│         │             ├─gjs───5*[{gjs}]
+						│         │             └─13*[{gnome-shell}]
+						│         ├─gnome-shell-cal───5*[{gnome-shell-cal}]
+						│         ├─gnome-terminal───gnome-terminal.───3*[{gnome-ter+
+						│         ├─gnome-terminal-─┬─bash───su───bash─┬─less
+						│         │                 │                  └─pstree
+						│         │                 └─3*[{gnome-terminal-}]
+						│         ├─goa-daemon───3*[{goa-daemon}]
+						│         ├─goa-identity-se───2*[{goa-identity-se}]
+						│         ├─gsd-a11y-settin───3*[{gsd-a11y-settin}]
+						│         ├─gsd-color───3*[{gsd-color}]
+						│         ├─gsd-datetime───3*[{gsd-datetime}]
+						│         ├─gsd-housekeepin───3*[{gsd-housekeepin}]
+						│         ├─gsd-keyboard───3*[{gsd-keyboard}]
+						│         ├─gsd-media-keys───3*[{gsd-media-keys}]
+						│         ├─gsd-power───3*[{gsd-power}]
+						│         ├─gsd-print-notif───2*[{gsd-print-notif}]
+						│         ├─gsd-printer───2*[{gsd-printer}]
+						│         ├─gsd-rfkill───2*[{gsd-rfkill}]
+						│         ├─gsd-screensaver───2*[{gsd-screensaver}]
+						│         ├─gsd-sharing───3*[{gsd-sharing}]
+						│         ├─gsd-smartcard───3*[{gsd-smartcard}]
+						│         ├─gsd-sound───3*[{gsd-sound}]
+						│         ├─gsd-wacom───3*[{gsd-wacom}]
+						│         ├─gsd-xsettings───3*[{gsd-xsettings}]
+						│         ├─gvfs-afc-volume───3*[{gvfs-afc-volume}]
+						│         ├─gvfs-goa-volume───2*[{gvfs-goa-volume}]
+						│         ├─gvfs-gphoto2-vo───2*[{gvfs-gphoto2-vo}]
+						│         ├─gvfs-mtp-volume───2*[{gvfs-mtp-volume}]
+						│         ├─gvfs-udisks2-vo───3*[{gvfs-udisks2-vo}]
+						│         ├─gvfsd─┬─gvfsd-dnssd───2*[{gvfsd-dnssd}]
+						│         │       ├─gvfsd-network───3*[{gvfsd-network}]
+						│         │       ├─gvfsd-trash───2*[{gvfsd-trash}]
+						│         │       └─2*[{gvfsd}]
+						│         ├─gvfsd-fuse───5*[{gvfsd-fuse}]
+						│         ├─gvfsd-metadata───2*[{gvfsd-metadata}]
+						│         ├─ibus-portal───2*[{ibus-portal}]
+						│         ├─ibus-x11───2*[{ibus-x11}]
+						│         ├─nautilus───5*[{nautilus}]
+						│         ├─pipewire───{pipewire}
+						│         ├─pipewire-media-───{pipewire-media-}
+						│         ├─pulseaudio───3*[{pulseaudio}]
+						│         ├─sh───ibus-daemon─┬─ibus-engine-sim───2*[{ibus-en+
+						│         │                  ├─ibus-extension-───3*[{ibus-ex+
+						│         │                  ├─ibus-memconf───2*[{ibus-memco+
+						│         │                  └─2*[{ibus-daemon}]
+						│         ├─snapd-desktop-i───snapd-desktop-i───3*[{snapd-de+
+						│         ├─tracker-extract───5*[{tracker-extract}]
+						│         ├─tracker-miner-f───6*[{tracker-miner-f}]
+						│         ├─xdg-desktop-por───6*[{xdg-desktop-por}]
+						│         ├─2*[xdg-desktop-por───3*[{xdg-desktop-por}]]
+						│         ├─xdg-document-po─┬─fusermount3
+						│         │                 └─6*[{xdg-document-po}]
+						│         └─xdg-permission-───2*[{xdg-permission-}]
+						├─systemd-journal
+						├─systemd-logind
+						├─systemd-oomd
+						├─systemd-resolve
+						├─systemd-timesyn───{systemd-timesyn}
+						├─systemd-udevd
+						├─udisksd───4*[{udisksd}]
+						├─unattended-upgr───{unattended-upgr}
+						├─upowerd───2*[{upowerd}]
+						└─wpa_supplicant
+				─{unattended-upgr}
+						├─upowerd───2*[{upowerd}]
+						└─wpa_supplicant
+						├─snapd───9*[{snapd}]
+						├─sshd
+						├─switcheroo-cont───2*[{switcheroo-cont}]
+						├─systemd─┬─(sd-pam)
+						│         ├─at-spi2-registr───2*[{at-spi2-registr}]
+						│         ├─2*[chrome_crashpad───2*[{chrome_crashpad}]]
+						│         ├─chrome_crashpad───{chrome_crashpad}
+						│         ├─code─┬─code
+						│         │      ├─code───code───12*[{code}]
+						│         │      ├─code───12*[{code}]
+						│         │      ├─code───6*[{code}]
+						│         │      ├─2*[code───14*[{code}]]
+						│         │      ├─code───16*[{code}]
+						│         │      └─35*[{code}]
+						│         ├─dbus-daemon
+						│         ├─dconf-service───2*[{dconf-service}]
+						│         ├─evolution-addre───5*[{evolution-addre}]
+						│         ├─evolution-calen───8*[{evolution-calen}]
+						│         ├─evolution-sourc───3*[{evolution-sourc}]
+						│         ├─2*[gjs───4*[{gjs}]]
+						│         ├─gnome-session-b─┬─anydesk───7*[{anydesk}]
+						│         │                 ├─at-spi-bus-laun─┬─dbus-daemon
+						│         │                 │                 └─3*[{at-spi-b+
+						│         │                 ├─evolution-alarm───5*[{evolutio+
+						│         │                 ├─gsd-disk-utilit───2*[{gsd-disk+
+						│         │                 ├─update-notifier───3*[{update-n+
+						│         │                 └─3*[{gnome-session-b}]
+						│         ├─gnome-session-c───{gnome-session-c}
+						│         ├─gnome-shell─┬─Xwayland
+						│         │             ├─chrome─┬─2*[cat]
+						│         │             │        ├─chrome─┬─chrome───12*[{ch+
+						│         │             │        │        └─chrome─┬─chrome
+						│         │             │        │                 └─32*[{ch+
+						│         │             │        ├─chrome───chrome─┬─chrome─+++
+						│         │             │        │                 ├─3*[chro+
+						│         │             │        │                 ├─9*[chro+
+						│         │             │        │                 ├─chrome─+++
+						│         │             │        │                 └─2*[chro+
+						│         │             │        ├─chrome───8*[{chrome}]
+						│         │             │        ├─chrome───7*[{chrome}]
+						│         │             │        └─35*[{chrome}]
+						│         │             ├─gjs───5*[{gjs}]
+						│         │             └─13*[{gnome-shell}]
+						│         ├─gnome-shell-cal───5*[{gnome-shell-cal}]
+						│         ├─gnome-terminal───gnome-terminal.───3*[{gnome-ter+
+						│         ├─gnome-terminal-─┬─bash───su───bash─┬─less
+						│         │                 │                  └─pstree
+						│         │                 └─3*[{gnome-terminal-}]
+						│         ├─goa-daemon───3*[{goa-daemon}]
+						│         ├─goa-identity-se───2*[{goa-identity-se}]
+						│         ├─gsd-a11y-settin───3*[{gsd-a11y-settin}]
+						│         ├─gsd-color───3*[{gsd-color}]
+						│         ├─gsd-datetime───3*[{gsd-datetime}]
+						│         ├─gsd-housekeepin───3*[{gsd-housekeepin}]
+						│         ├─gsd-keyboard───3*[{gsd-keyboard}]
+						│         ├─gsd-media-keys───3*[{gsd-media-keys}]
+						│         ├─gsd-power───3*[{gsd-power}]
+						│         ├─gsd-print-notif───2*[{gsd-print-notif}]
+						│         ├─gsd-printer───2*[{gsd-printer}]
+						│         ├─gsd-rfkill───2*[{gsd-rfkill}]
+						│         ├─gsd-screensaver───2*[{gsd-screensaver}]
+						│         ├─gsd-sharing───3*[{gsd-sharing}]
+						│         ├─gsd-smartcard───3*[{gsd-smartcard}]
+						│         ├─gsd-sound───3*[{gsd-sound}]
+						│         ├─gsd-wacom───3*[{gsd-wacom}]
+						│         ├─gsd-xsettings───3*[{gsd-xsettings}]
+						│         ├─gvfs-afc-volume───3*[{gvfs-afc-volume}]
+						│         ├─gvfs-goa-volume───2*[{gvfs-goa-volume}]
+						│         ├─gvfs-gphoto2-vo───2*[{gvfs-gphoto2-vo}]
+						│         ├─gvfs-mtp-volume───2*[{gvfs-mtp-volume}]
+						│         ├─gvfs-udisks2-vo───3*[{gvfs-udisks2-vo}]
+						│         ├─gvfsd─┬─gvfsd-dnssd───2*[{gvfsd-dnssd}]
+						│         │       ├─gvfsd-network───3*[{gvfsd-network}]
+						│         │       ├─gvfsd-trash───2*[{gvfsd-trash}]
+						│         │       └─2*[{gvfsd}]
+						│         ├─gvfsd-fuse───5*[{gvfsd-fuse}]
+						│         ├─gvfsd-metadata───2*[{gvfsd-metadata}]
+						│         ├─ibus-portal───2*[{ibus-portal}]
+						│         ├─ibus-x11───2*[{ibus-x11}]
+						│         ├─nautilus───5*[{nautilus}]
+						│         ├─pipewire───{pipewire}
+						│         ├─pipewire-media-───{pipewire-media-}
+						│         ├─pulseaudio───3*[{pulseaudio}]
+						│         ├─sh───ibus-daemon─┬─ibus-engine-sim───2*[{ibus-en+
+						│         │                  ├─ibus-extension-───3*[{ibus-ex+
+						│         │                  ├─ibus-memconf───2*[{ibus-memco+
+						│         │                  └─2*[{ibus-daemon}]
+						│         ├─snapd-desktop-i───snapd-desktop-i───3*[{snapd-de+
+						│         ├─tracker-extract───5*[{tracker-extract}]
+						│         ├─tracker-miner-f───6*[{tracker-miner-f}]
+						│         ├─xdg-desktop-por───6*[{xdg-desktop-por}]
+						│         ├─2*[xdg-desktop-por───3*[{xdg-desktop-por}]]
+						│         ├─xdg-document-po─┬─fusermount3
+						│         │                 └─6*[{xdg-document-po}]
+						│         └─xdg-permission-───2*[{xdg-permission-}]
+						├─systemd-journal
+						├─systemd-logind
+						├─systemd-oomd
+						├─systemd-resolve
+						├─systemd-timesyn───{systemd-timesyn}
+						├─systemd-udevd
+						├─udisksd───4*[{udisksd}]
+						├─unattended-upgr───{unattended-upgr}
+						├─upowerd───2*[{upowerd}]
+						└─wpa_supplicant
+			
+			pstree -p //presenta arbol con los pid
+			root@janvera-VirtualBox:/home/yonarev# pstree -p
+				systemd(1)─┬─ModemManager(730)─┬─{ModemManager}(753)
+						│                   └─{ModemManager}(759)
+						├─NetworkManager(647)─┬─{NetworkManager}(732)
+						│                     └─{NetworkManager}(733)
+						├─accounts-daemon(638)─┬─{accounts-daemon}(679)
+						│                      └─{accounts-daemon}(723)
+						├─acpid(639)
+						├─anydesk(741)─┬─{anydesk}(800)
+						│              ├─{anydesk}(801)
+						│              └─{anydesk}(1747)
+						├─avahi-daemon(642)───avahi-daemon(681)
+						├─colord(1646)─┬─{colord}(1655)
+						│              └─{colord}(1657)
+						├─cron(644)
+						├─cups-browsed(795)─┬─{cups-browsed}(1131)
+						│                   └─{cups-browsed}(1132)
+						├─cupsd(735)─┬─dbus(786)
+						│            └─dbus(787)
+						├─dbus-daemon(645)
+						├─fwupd(1801)─┬─{fwupd}(1805)
+						│             ├─{fwupd}(1814)
+						│             ├─{fwupd}(1815)
+						│             └─{fwupd}(1820)
+						├─gdm3(763)─┬─gdm-session-wor(773)─┬─gdm-wayland-ses(925)+++
+						│           │                      ├─{gdm-session-wor}(77+
+						│           │                      └─{gdm-session-wor}(77+
+						│           ├─{gdm3}(767)
+						│           └─{gdm3}(768)
+						├─geoclue(1255)─┬─{geoclue}(1265)
+						│               └─{geoclue}(1267)
+						├─gnome-keyring-d(917)─┬─{gnome-keyring-d}(919)
+						│                      ├─{gnome-keyring-d}(920)
+						│                      └─{gnome-keyring-d}(1038)
+						├─irqbalance(655)───{irqbalance}(677)
+						├─kerneloops(804)
+						├─kerneloops(813)
+						├─networkd-dispat(657)
+						├─nmbd(797)
+						├─packagekitd(1312)─┬─{packagekitd}(1315)
+						│                   └─{packagekitd}(1316)
+						├─polkitd(661)─┬─{polkitd}(675)
+						│              └─{polkitd}(721)
+						├─power-profiles-(662)─┬─{power-profiles-}(683)
+						│                      └─{power-profiles-}(724)
+						├─rsyslogd(664)─┬─{rsyslogd}(690)
+						│               ├─{rsyslogd}(691)
+						│               └─{rsyslogd}(692)
+						├─rtkit-daemon(918)─┬─{rtkit-daemon}(921)
+						│                   └─{rtkit-daemon}(922)
+						├─smbd(895)─┬─cleanupd(898)
+						│           ├─samba-bgqd(899)
+						│           └─smbd-notifyd(897)
+						├─snapd(671)─┬─{snapd}(877)
+						│            ├─{snapd}(880)
+						│            ├─{snapd}(881)
+						│            ├─{snapd}(882)
+						│            ├─{snapd}(883)
+						│            ├─{snapd}(885)
+						│            ├─{snapd}(984)
+						│            ├─{snapd}(1117)
+						│            └─{snapd}(1130)
+						├─sshd(760)
+						├─switcheroo-cont(672)─┬─{switcheroo-cont}(688)
+						│                      └─{switcheroo-cont}(725)
+						├─systemd(879)─┬─(sd-pam)(884)
+						│              ├─at-spi2-registr(1347)─┬─{at-spi2-registr+
+						│              │                       └─{at-spi2-registr+
+						│              ├─chrome_crashpad(2766)─┬─{chrome_crashpad+
+						│              │                       └─{chrome_crashpad+
+						│              ├─chrome_crashpad(2768)───{chrome_crashpad+
+						│              ├─chrome_crashpad(3139)─┬─{chrome_crashpad+
+						│              │                       └─{chrome_crashpad+
+						│              ├─code(3117)─┬─code(3119)
+						│              │            ├─code(3120)───code(3195)─┬─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         ├─{+
+						│              │            │                         └─{+
+						│              │            ├─code(3156)─┬─{code}(3183)
+						│              │            │            ├─{code}(3184)
+						│              │            │            ├─{code}(3185)
+						│              │            │            ├─{code}(3186)
+						│              │            │            ├─{code}(3188)
+						│              │            │            ├─{code}(3189)
+						│              │            │            ├─{code}(3190)
+						│              │            │            ├─{code}(3191)
+						│              │            │            ├─{code}(3192)
+						│              │            │            ├─{code}(3193)
+						│              │            │            ├─{code}(3222)
+						│              │            │            └─{code}(3223)
+						│              │            ├─code(3164)─┬─{code}(3172)
+						│              │            │            ├─{code}(3173)
+						│              │            │            ├─{code}(3174)
+						│              │            │            ├─{code}(3175)
+						│              │            │            ├─{code}(3176)
+						│              │            │            └─{code}(3177)
+						│              │            ├─code(3261)─┬─{code}(3273)
+						│              │            │            ├─{code}(3274)
+						│              │            │            ├─{code}(3275)
+						│              │            │            ├─{code}(3276)
+						│              │            │            ├─{code}(3277)
+						│              │            │            ├─{code}(3281)
+						│              │            │            ├─{code}(3282)
+						│              │            │            ├─{code}(3283)
+						│              │            │            ├─{code}(3290)
+						│              │            │            ├─{code}(3295)
+						│              │            │            ├─{code}(3305)
+						│              │            │            ├─{code}(3306)
+						│              │            │            ├─{code}(3307)
+						│              │            │            └─{code}(3308)
+						│              │            ├─code(3262)─┬─{code}(3265)
+						│              │            │            ├─{code}(3266)
+						│              │            │            ├─{code}(3267)
+						│              │            │            ├─{code}(3268)
+						│              │            │            ├─{code}(3269)
+						│              │            │            ├─{code}(3270)
+						│              │            │            ├─{code}(3271)
+						│              │            │            ├─{code}(3272)
+						│              │            │            ├─{code}(3289)
+						│              │            │            ├─{code}(3293)
+						│              │            │            ├─{code}(3301)
+						│              │            │            ├─{code}(3302)
+						│              │            │            ├─{code}(3303)
+						│              │            │            ├─{code}(3304)
+						│              │            │            ├─{code}(3371)
+						│              │            │            └─{code}(3372)
+						│              │            ├─code(3264)─┬─{code}(3278)
+						│              │            │            ├─{code}(3279)
+						│              │            │            ├─{code}(3280)
+						│              │            │            ├─{code}(3284)
+						│              │            │            ├─{code}(3285)
+						│              │            │            ├─{code}(3286)
+						│              │            │            ├─{code}(3287)
+						│              │            │            ├─{code}(3288)
+						│              │            │            ├─{code}(3291)
+						│              │            │            ├─{code}(3292)
+						│              │            │            ├─{code}(3297)
+						│              │            │            ├─{code}(3298)
+						│              │            │            ├─{code}(3299)
+						│              │            │            └─{code}(3300)
+						│              │            ├─{code}(3118)
+						│              │            ├─{code}(3123)
+						│              │            ├─{code}(3124)
+						│              │            ├─{code}(3125)
+						│              │            ├─{code}(3126)
+						│              │            ├─{code}(3129)
+						│              │            ├─{code}(3130)
+						│              │            ├─{code}(3132)
+						│              │            ├─{code}(3133)
+						│              │            ├─{code}(3134)
+						│              │            ├─{code}(3135)
+						│              │            ├─{code}(3137)
+						│              │            ├─{code}(3142)
+						│              │            ├─{code}(3143)
+						│              │            ├─{code}(3144)
+						│              │            ├─{code}(3145)
+						│              │            ├─{code}(3146)
+						│              │            ├─{code}(3147)
+						│              │            ├─{code}(3148)
+						│              │            ├─{code}(3149)
+						│              │            ├─{code}(3150)
+						│              │            ├─{code}(3151)
+						│              │            ├─{code}(3152)
+						│              │            ├─{code}(3153)
+						│              │            ├─{code}(3154)
+						│              │            ├─{code}(3157)
+						│              │            ├─{code}(3158)
+						│              │            ├─{code}(3159)
+						│              │            ├─{code}(3178)
+						│              │            ├─{code}(3179)
+						│              │            ├─{code}(3180)
+						│              │            ├─{code}(3181)
+						│              │            ├─{code}(3182)
+						│              │            ├─{code}(3194)
+						│              │            └─{code}(3212)
+						│              ├─dbus-daemon(928)
+						│              ├─dconf-service(1259)─┬─{dconf-service}(12+
+						│              │                     └─{dconf-service}(12+
+						│              ├─evolution-addre(1311)─┬─{evolution-addre+
+						│              │                       ├─{evolution-addre+
+						│              │                       ├─{evolution-addre+
+						│              │                       ├─{evolution-addre+
+						│              │                       └─{evolution-addre+
+						│              ├─evolution-calen(1272)─┬─{evolution-calen+
+						│              │                       ├─{evolution-calen+
+						│              │                       ├─{evolution-calen+
+						│              │                       ├─{evolution-calen+
+						│              │                       ├─{evolution-calen+
+						│              │                       ├─{evolution-calen+
+						│              │                       ├─{evolution-calen+
+						│              │                       └─{evolution-calen+
+						│              ├─evolution-sourc(1242)─┬─{evolution-sourc+
+						│              │                       ├─{evolution-sourc+
+						│              │                       └─{evolution-sourc+
+						│              ├─gjs(1345)─┬─{gjs}(1352)
+						│              │           ├─{gjs}(1354)
+						│              │           ├─{gjs}(1355)
+						│              │           └─{gjs}(1356)
+						│              ├─gjs(1686)─┬─{gjs}(1691)
+						│              │           ├─{gjs}(1692)
+						│              │           ├─{gjs}(1693)
+						│              │           └─{gjs}(1694)
+						│              ├─gnome-session-b(1056)─┬─anydesk(1426)─┬─+
+						│              │                       │               ├─+
+						│              │                       │               ├─+
+						│              │                       │               ├─+
+						│              │                       │               ├─+
+						│              │                       │               ├─+
+						│              │                       │               └─+
+						│              │                       ├─at-spi-bus-laun(+
+						│              │                       ├─evolution-alarm(+
+						│              │                       ├─gsd-disk-utilit(+
+						│              │                       ├─update-notifier(+
+						│              │                       ├─{gnome-session-b+
+						│              │                       ├─{gnome-session-b+
+						│              │                       └─{gnome-session-b+
+						│              ├─gnome-session-c(1032)───{gnome-session-c+
+						│              ├─gnome-shell(1094)─┬─Xwayland(1528)
+						│              │                   ├─chrome(2758)─┬─cat(2+
+						│              │                   │              ├─cat(2+
+						│              │                   │              ├─chrom+
+						│              │                   │              ├─chrom+
+						│              │                   │              ├─chrom+
+						│              │                   │              ├─chrom+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              ├─{chro+
+						│              │                   │              └─{chro+
+						│              │                   ├─gjs(2561)─┬─{gjs}(25+
+						│              │                   │           ├─{gjs}(25+
+						│              │                   │           ├─{gjs}(25+
+						│              │                   │           ├─{gjs}(25+
+						│              │                   │           └─{gjs}(25+
+						│              │                   ├─{gnome-shell}(1116)
+						│              │                   ├─{gnome-shell}(1137)
+						│              │                   ├─{gnome-shell}(1139)
+						│              │                   ├─{gnome-shell}(1158)
+						│              │                   ├─{gnome-shell}(1159)
+						│              │                   ├─{gnome-shell}(1160)
+						│              │                   ├─{gnome-shell}(1161)
+						│              │                   ├─{gnome-shell}(1162)
+						│              │                   ├─{gnome-shell}(1163)
+						│              │                   ├─{gnome-shell}(1167)
+						│              │                   ├─{gnome-shell}(1168)
+						│              │                   ├─{gnome-shell}(1733)
+						│              │                   └─{gnome-shell}(4924)
+						│              ├─gnome-shell-cal(1235)─┬─{gnome-shell-cal+
+						│              │                       ├─{gnome-shell-cal+
+						│              │                       ├─{gnome-shell-cal+
+						│              │                       ├─{gnome-shell-cal+
+						│              │                       └─{gnome-shell-cal+
+						│              ├─gnome-terminal(4033)───gnome-terminal.(4+
+						│              ├─gnome-terminal-(4041)─┬─bash(4059)───su(+
+						│              │                       ├─{gnome-terminal-+
+						│              │                       ├─{gnome-terminal-+
+						│              │                       └─{gnome-terminal-+
+						│              ├─goa-daemon(1258)─┬─{goa-daemon}(1291)
+						│              │                  ├─{goa-daemon}(1293)
+						│              │                  └─{goa-daemon}(1294)
+						│              ├─goa-identity-se(1297)─┬─{goa-identity-se+
+						│              │                       └─{goa-identity-se+
+						│              ├─gsd-a11y-settin(1360)─┬─{gsd-a11y-settin+
+						│              │                       ├─{gsd-a11y-settin+
+						│              │                       └─{gsd-a11y-settin+
+						│              ├─gsd-color(1364)─┬─{gsd-color}(1433)
+						│              │                 ├─{gsd-color}(1436)
+						│              │                 └─{gsd-color}(1437)
+						│              ├─gsd-datetime(1365)─┬─{gsd-datetime}(1409+
+						│              │                    ├─{gsd-datetime}(1430+
+						│              │                    └─{gsd-datetime}(1494+
+						│              ├─gsd-housekeepin(1366)─┬─{gsd-housekeepin+
+						│              │                       ├─{gsd-housekeepin+
+						│              │                       └─{gsd-housekeepin+
+						│              ├─gsd-keyboard(1367)─┬─{gsd-keyboard}(1403+
+						│              │                    ├─{gsd-keyboard}(1405+
+						│              │                    └─{gsd-keyboard}(1427+
+						│              ├─gsd-media-keys(1369)─┬─{gsd-media-keys}(+
+						│              │                      ├─{gsd-media-keys}(+
+						│              │                      └─{gsd-media-keys}(+
+						│              ├─gsd-power(1370)─┬─{gsd-power}(1410)
+						│              │                 ├─{gsd-power}(1420)
+						│              │                 └─{gsd-power}(1431)
+						│              ├─gsd-print-notif(1372)─┬─{gsd-print-notif+
+						│              │                       └─{gsd-print-notif+
+						│              ├─gsd-printer(1505)─┬─{gsd-printer}(1506)
+						│              │                   └─{gsd-printer}(1507)
+						│              ├─gsd-rfkill(1373)─┬─{gsd-rfkill}(1385)
+						│              │                  └─{gsd-rfkill}(1391)
+						│              ├─gsd-screensaver(1376)─┬─{gsd-screensaver+
+						│              │                       └─{gsd-screensaver+
+						│              ├─gsd-sharing(1377)─┬─{gsd-sharing}(1398)
+						│              │                   ├─{gsd-sharing}(1399)
+						│              │                   └─{gsd-sharing}(1407)
+						│              ├─gsd-smartcard(1378)─┬─{gsd-smartcard}(13+
+						│              │                     ├─{gsd-smartcard}(13+
+						│              │                     └─{gsd-smartcard}(14+
+						│              ├─gsd-sound(1380)─┬─{gsd-sound}(1392)
+						│              │                 ├─{gsd-sound}(1401)
+						│              │                 └─{gsd-sound}(1424)
+						│              ├─gsd-wacom(1384)─┬─{gsd-wacom}(1406)
+						│              │                 ├─{gsd-wacom}(1421)
+						│              │                 └─{gsd-wacom}(1432)
+						│              ├─gsd-xsettings(1638)─┬─{gsd-xsettings}(16+
+						│              │                     ├─{gsd-xsettings}(16+
+						│              │                     └─{gsd-xsettings}(16+
+						│              ├─gvfs-afc-volume(1277)─┬─{gvfs-afc-volume+
+						│              │                       ├─{gvfs-afc-volume+
+						│              │                       └─{gvfs-afc-volume+
+						│              ├─gvfs-goa-volume(1288)─┬─{gvfs-goa-volume+
+						│              │                       └─{gvfs-goa-volume+
+						│              ├─gvfs-gphoto2-vo(1284)─┬─{gvfs-gphoto2-vo+
+						│              │                       └─{gvfs-gphoto2-vo+
+						│              ├─gvfs-mtp-volume(1273)─┬─{gvfs-mtp-volume+
+						│              │                       └─{gvfs-mtp-volume+
+						│              ├─gvfs-udisks2-vo(1262)─┬─{gvfs-udisks2-vo+
+						│              │                       ├─{gvfs-udisks2-vo+
+						│              │                       └─{gvfs-udisks2-vo+
+						│              ├─gvfsd(1042)─┬─gvfsd-dnssd(6978)─┬─{gvfsd+
+						│              │             │                   └─{gvfsd+
+						│              │             ├─gvfsd-network(6962)─┬─{gvf+
+						│              │             │                     ├─{gvf+
+						│              │             │                     └─{gvf+
+						│              │             ├─gvfsd-trash(1330)─┬─{gvfsd+
+						│              │             │                   └─{gvfsd+
+						│              │             ├─{gvfsd}(1050)
+						│              │             └─{gvfsd}(1052)
+						│              ├─gvfsd-fuse(1055)─┬─{gvfsd-fuse}(1059)
+						│              │                  ├─{gvfsd-fuse}(1060)
+						│              │                  ├─{gvfsd-fuse}(1061)
+						│              │                  ├─{gvfsd-fuse}(1062)
+						│              │                  └─{gvfsd-fuse}(1063)
+						│              ├─gvfsd-metadata(1802)─┬─{gvfsd-metadata}(+
+						│              │                      └─{gvfsd-metadata}(+
+						│              ├─ibus-portal(1465)─┬─{ibus-portal}(1471)
+						│              │                   └─{ibus-portal}(1472)
+						│              ├─ibus-x11(1711)─┬─{ibus-x11}(1713)
+						│              │                └─{ibus-x11}(1714)
+						│              ├─nautilus(7507)─┬─{nautilus}(7508)
+						│              │                ├─{nautilus}(7509)
+						│              │                ├─{nautilus}(7511)
+						│              │                └─{nautilus}(7514)
+						│              ├─pipewire(901)───{pipewire}(936)
+						│              ├─pipewire-media-(902)───{pipewire-media-}+
+						│              ├─pulseaudio(903)─┬─{pulseaudio}(973)
+						│              │                 ├─{pulseaudio}(975)
+						│              │                 └─{pulseaudio}(1010)
+						│              ├─sh(1359)───ibus-daemon(1362)─┬─ibus-engi+
+						│              │                              ├─ibus-exte+
+						│              │                              ├─ibus-memc+
+						│              │                              ├─{ibus-dae+
+						│              │                              └─{ibus-dae+
+						│              ├─snapd-desktop-i(1169)───snapd-desktop-i(+
+						│              ├─tracker-miner-f(1718)─┬─{tracker-miner-f+
+						│              │                       ├─{tracker-miner-f+
+						│              │                       ├─{tracker-miner-f+
+						│              │                       ├─{tracker-miner-f+
+						│              │                       └─{tracker-miner-f+
+						│              ├─xdg-desktop-por(1225)─┬─{xdg-desktop-por+
+						│              │                       ├─{xdg-desktop-por+
+						│              │                       ├─{xdg-desktop-por+
+						│              │                       ├─{xdg-desktop-por+
+						│              │                       ├─{xdg-desktop-por+
+						│              │                       └─{xdg-desktop-por+
+						│              ├─xdg-desktop-por(1229)─┬─{xdg-desktop-por+
+						│              │                       ├─{xdg-desktop-por+
+						│              │                       └─{xdg-desktop-por+
+						│              ├─xdg-desktop-por(1622)─┬─{xdg-desktop-por+
+						│              │                       ├─{xdg-desktop-por+
+						│              │                       └─{xdg-desktop-por+
+						│              ├─xdg-document-po(948)─┬─fusermount3(972)
+						│              │                      ├─{xdg-document-po}+
+						│              │                      ├─{xdg-document-po}+
+						│              │                      ├─{xdg-document-po}+
+						│              │                      ├─{xdg-document-po}+
+						│              │                      ├─{xdg-document-po}+
+						│              │                      └─{xdg-document-po}+
+						│              └─xdg-permission-(956)─┬─{xdg-permission-}+
+						│                                     └─{xdg-permission-}+
+						├─systemd-journal(192)
+						├─systemd-logind(673)
+						├─systemd-oomd(463)
+						├─systemd-resolve(466)
+						├─systemd-timesyn(469)───{systemd-timesyn}(592)
+						├─systemd-udevd(245)
+						├─udisksd(674)─┬─{udisksd}(707)
+						│              ├─{udisksd}(722)
+						│              ├─{udisksd}(754)
+						│              └─{udisksd}(771)
+						├─unattended-upgr(740)───{unattended-upgr}(823)
+						├─upowerd(1243)─┬─{upowerd}(1252)
+						│               └─{upowerd}(1253)
+						└─wpa_supplicant(676)
+
+			ps aux //presenta procesos por usuario en la 1era col 
+					indica uso de cpu memoria start =hora de comienzo 
+			procesos en tiempo real 
+				cada 3 seg se actualiza
+				en dos partes
+					parte sup es resumen
+					parte inf es tabla de proceso por cpu
+				root@janvera-VirtualBox:~# top
+					teclas 
+						h ayuda
+						q salir
+	CONTROL DE PROCESOS
+	 	ctrl+c //cancela muchos proc 
+		programa & //lo ejecuta en segundo plano liberando el terminal 
+		PROCESO EN PRIMER PLANO 
+			glxgears
+		PROCESO EN 2DO PLANO 
+			glxgears &
+				janvera@janvera-VirtualBox:~$ glxgears &
+				[1] 12398
+				control de trabajo
+					[1] id de trabajo 
+					12398 es el pid
+			al ejecutar ps 
+			ps
+					PID TTY          TIME CMD
+					11923 pts/0    00:00:00 bash
+					12398 pts/0    00:01:13 glxgears
+					12674 pts/0    00:00:00 ps
+					janvera@janvera-VirtualBox:~$ 1702 frames in 5.0 seconds = 340.083 FPS
+					1806 frames in 5.0 seconds = 361.150 FPS
+			al ejecutar jobs
+			jobs
+				[1]+  Ejecutando              glxgears &
+		VOLVER PROCESO A 1ER PLANO 
+			fg %1 //1 es el nro de trabajo
+		DETENER PROCESO 
+			ctrl+z //señal de tstp parada de terminal
+			ctrl+c //señal de init de interrupcion
+			^Z
+			[2]+  Detenido                glxgears
+		PASAR A 2DO PLANO 
+			bg %1
+		MATAR PROCESO
+			envia señal al prog en 1er plano
+			kill pid 
+
+			janvera@janvera-VirtualBox:~$ glxgears &
+			[4] 13624
+			kill 13624 //no se envia al pro se envia al kernel
+			SOLO COMO ULTIMO RECURSO NO SE GUARDAN CFG AL CERRAR
+
+			EJEMPLO HUB DE SEÑALES COLGAR
+				janvera@janvera-VirtualBox:~$ glxgears &
+					[4] 14511
+				kill -1 14511
+				//SE CERRO EL PROG
+				[4]   Colgar (hangup)         glxgears
+			EJEMPLO CON EL NOMBRE INTERRUMPIR
+				janvera@janvera-VirtualBox:~$ glxgears &
+				[4] 14955
+				kill -INT 14955
+				janvera@janvera-VirtualBox:~$ 
+				[4]   Interrupción           glxgears
+
+		SEÑALES 
+			EN TERMINAL
+			kill -l
+								1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+				6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+				11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+				16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+				21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+				26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+				31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+				38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+				43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+				48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+				53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+				58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+				63) SIGRTMAX-1	64) SIGRTMAX	
+			Señales de Linux y sus descripciones:
+				Señal	Descripción
+				1 (HUP)	Significa colgar. Se envía automáticamente cuando se cierra una ventana de terminal que inició un proceso antes de finalizar el proceso.
+				2 (INT)	Significa interrupción, y envía la misma señal que se usa cuando presionamos Ctrl-C en la terminal, que generalmente termina el proceso.
+				9 (KILL)	Significa matar, no se envía al proceso, sino al kernel del sistema operativo, que inmediatamente detiene y finaliza el proceso.
+				15 (TERM)	Significa terminar. El proceso lo recibirá y terminará solo. Es la señal predeterminada enviada por kill.
+				18 (CONT)	Significa continuar. Se puede utilizar para reanudar un proceso detenido.
+				19 (STOP)	Significa detener, no se envía al proceso, sino al kernel del sistema operativo, que inmediatamente detiene el proceso sin terminar.
+				20 (TSTP)	Significa parada terminal. A diferencia de la señal STOP, esta señal se envía al programa, es la señal enviada por el terminal cuando se presiona CTRL-Z
+
+				HUP (Hangup): Esta señal se envía cuando se cierra una ventana de terminal que inició un proceso. El proceso puede recibir esta señal y finalizar por su cuenta o puede ignorarla.
+				INT (Interrupt): Esta señal se envía cuando se presiona Ctrl-C en la terminal. La mayoría de los procesos terminarán cuando reciban esta señal, pero algunos programas pueden ignorarla o manejarla de manera diferente.
+				KILL (Kill): Esta señal se envía para matar a un proceso inmediatamente. El proceso no tendrá la oportunidad de finalizar por su cuenta y se cerrará por la fuerza.
+				TERM (Terminate): Esta señal se envía para indicar a un proceso que debe terminar. El proceso recibirá esta señal y tendrá la oportunidad de finalizar de forma ordenada.
+				CONT (Continue): Esta señal se utiliza para reanudar un proceso que se ha detenido. El proceso se reanudará y continuará ejecutándose.
+				STOP (Stop): Esta señal se utiliza para detener un proceso. El proceso se detendrá y no podrá continuar ejecutándose hasta que se envíe la señal CONT.
+				TSTP (Terminal Stop): Esta señal se utiliza para detener un proceso desde la terminal. El proceso se detendrá y no podrá continuar ejecutándose hasta que se presione Ctrl-Z de nuevo.
+		MATANDO MULTPLES PROCESOS 
+			killall glxgear //nom func 
+				glxgear: ningún proceso encontrado
+				por no ser propietario del proceso?
+	APAGAR EL SISTEMA Como superusuario
+		halt //detiene cpu pero sigue con energia aveces lo apaga
+		poweroff //apaga el sist
+		reboot //reinicia
+		shutdown //
+			shutdown -p //apaga el sit despues de un minuto
+			shutdown -c //cancelo apagado
+			shutdown -p now //apaga
+			shutdown -p 5 "EL  SISTEMA SE APAGARA EN 5 MINUTOS"
+			shutdown -r //reinicia despues de 1 min por defecto
+ERROR NO ESTA EN sudoers
+	yonarev@janvera-VirtualBox:~/ejerciciosyonar$ sudo chown janvera yonar.txt
+	[sudo] contraseña para yonarev:
+	yonarev no está en el archivo sudoers. Se informará de este incidente.			
+	
+	1-Añadir el usuario yonarev al grupo sudo
+	abre una terminal.
+	janvera@janvera-VirtualBox:~$
+	usermod -aG sudo yonarev
+
+	su -
+	janvera@janvera-VirtualBox:~$ su -
+	Contraseña: 
+	root@janvera-VirtualBox:~# //funciona psw 
+	//cambio a modo # superusuario 
+	
+	Verifica los grupos del usuario:
+		groups janvera
+			janvera : janvera 
+			adm cdrom sudo dip plugdev lpadmin lxd sambashare
+			
+			indica que el usuario janvera es miembro de los siguientes grupos:
+			janvera: El grupo principal del usuario janvera.
+			adm: Grupo que permite acceso a ciertos archivos de log del sistema.
+			cdrom: Permite al usuario usar dispositivos de CD-ROM.
+			sudo: Permite al usuario ejecutar comandos con privilegios de superusuario usando sudo.
+			dip: Permite al usuario gestionar interfaces de red PPP.
+			plugdev: Permite al usuario acceder a dispositivos enchufables como USB.
+			lpadmin: Permite al usuario administrar impresoras.
+			lxd: Relacionado con LXD, un contenedor de hipervisor para ejecutar contenedores.
+			sambashare: Permite al usuario compartir archivos y recursos a través de Samba.
+			Significado y permisos
+			janvera: Grupo principal del usuario. Los archivos creados por el usuario tendrán este grupo por defecto.
+			adm: Permite acceso a archivos de log en /var/log.
+			cdrom: Da permisos para acceder a dispositivos CD-ROM.
+			sudo: Permite al usuario ejecutar comandos como superusuario, lo que es crucial para tareas administrativas.
+			dip: Permite al usuario usar pppd para gestionar conexiones PPP.
+			plugdev: Da permisos para usar dispositivos USB y otros dispositivos enchufables.
+			lpadmin: Permite al usuario configurar y gestionar impresoras.
+			lxd: Relacionado con la gestión de contenedores usando LXD.
+			sambashare: Permite al usuario compartir directorios a través de Samba, facilitando el intercambio de archivos en una red.
+CURSOR 
+	ctl+a //ir al pricipipo de la linea de comandos 
+	ctrl+e //al final de la linea
+	ctrl+b //1 caracter atraz
+	ctrl+f //1 caracter adelante
+	alt+b //una palabra atraz 
+	alt+f //una palabra delante
+TECLADO CFG 
+	microsoft natural pro oem 
+	layout spanish latinamerican
+LIMPIA PANTALLA
+	clear 
+	ctrl+l
+MODIFICAR TEXTO 
+	ctrl+d //elimina sobre un caracter
+	ctrl+t //intercala
+	alt+t //intercala palabras
+	alt+u //a mayuscula desde el curos
+	alt+l //a minuscula
+	CORTAR Y PEGA /matar y tirar
+	ctrl+u //corta hacia atras todo
+	ctrl+k //cortar del curso en adelante
+	ctrl+y //pega
+	alt+d //corta la palabra con pos al ppio
+	alt+backspace //corta hacia atraz una palabra
+TABULADOR 
+	completa las pal 
+HISTORIAL o doskey 
+	ctrl+p ultimo comando anterior
+	ctrl+n idem flecha abjo
+	la lsita de comandos se guarda en 
+	.bash_history
+	history //presenta todo el historial
+	FILTRO 
+	ctrl+r //busca en el historial
+		history | grep ~ //?
+		!numero de linea //
+			presenta ese comando del history
+			listo para ejecutar
+		!! dos signos se repite el ultimo
+		!texto //busca si esta texto en el historial
+ICONOS
+	↑↓→ ←alt+24 25 26 27
+	~ F5  ,ALT+ 126
+CONEXION CON SSH 
+	ip address
+	INSTALANDO SSH
+		sudo apt install openssh-server
+		sudo service ssh status
+		sudo service start
+		OTRA FORMA 
+			sudo apt install openssh-server
+				//Este comando instala el paquete 
+				del servidor OpenSSH, el cual es 
+				necesario para permitir conexiones
+				remotas mediante SSH.
+			sudo service start ssh
+			sudo systemctl start ssh //EN KALI
+
+	DESDE WIN 
+		WinSCP con el ip
+		192.168.142.129
+		en terminal
+			ssh kali@192.168.142.129 -p 22
+			NO FUNCIONA EN KALI
+FALLAN PSW ECCESO A GRUB 
+	janvera@janvera-VirtualBox:~$ su -
+	Contraseña: 
+	su: Fallo de autenticación
+	janvera@janvera-VirtualBox:~$ su -
+	Contraseña: 
+	su: Fallo de autenticación
+	janvera@janvera-VirtualBox:~$ su -
+	Contraseña: 
+	su: Fallo de autenticación
+	janvera@janvera-VirtualBox:~$ su -
+	Contraseña: 
+	su: Fallo de autenticación
+	CORRECCION 
+		Reinicia tu máquina virtual:
+		Accede al menú de GRUB
+			Janvera@janvera-VirtualBox:~$ sudo nano /etc/default/grub
+			[sudo] contraseña para janvera: 
+				modificar archivo 
+					GRUB_TIMEOUT=10
+				Encuentra la línea que dice 
+					GRUB_TIMEOUT_STYLE=hidden 
+					y cámbiala a 
+					GRUB_TIMEOUT_STYLE=menu
+			janvera@janvera-VirtualBox:~$ 
+				Guarda los cambios y actualiza GRUB:
+					sudo update-grub
+						janvera@janvera-VirtualBox:~$ sudo update-grub
+						Sourcing file `/etc/default/grub'
+						Sourcing file `/etc/default/grub.d/init-select.cfg'
+						Generating grub configuration file ...
+						Found linux image: /boot/vmlinuz-6.5.0-35-generic
+						Found initrd image: /boot/initrd.img-6.5.0-35-generic
+						Found linux image: /boot/vmlinuz-6.2.0-26-generic
+						Found initrd image: /boot/initrd.img-6.2.0-26-generic
+						Found memtest86+ image: /boot/memtest86+.elf
+						Found memtest86+ image: /boot/memtest86+.bin
+						Warning: os-prober will not be executed to detect other bootable partitions.
+						Systems on them will not be added to the GRUB boot configuration.
+						Check GRUB_DISABLE_OS_PROBER documentation entry.
+						done
+				Reinicia la máquina virtual:
+					sudo reboot
+					Una vez en el menú de GRUB
+					selecciona "Advanced options for Ubuntu":
+					Selecciona el kernel con "(recovery mode)":
+					Selecciona "root" en el menú de recuperación:
+					Remonta el sistema de archivos:
+						mount -o remount,rw /
+						Cambia la contraseña de root: 
+							passwd
+						Reinicia la máquina:
+							reboot
+APAGAR MAQUINA DESDE TERMINAL 
+	sudo shutdown now
+		O
+	sudo poweroff
+		o
+	sudo halt
+
+	Programar el apagado
+		después de 10 minutos.
+		sudo shutdown +10
+	Forzar el apagado
+		sudo shutdown -P now
+			o
+		sudo init 0 //TAMBIEN LO APAGA
+ATAJOS  VSCODE
+	ctrl-k-0 expande visual
+	ctrl-k-j expande
+
+EJERCICIOS EN KALI 
+	TERMINAL
+		ctrl-alt-T
+	SALIR	
+		exit
+	CAMBIO USUARIO janvera 
+	 	┌──(kali㉿kali)-[~]
+		└─$ su janvera
+		Contraseña: 
+		┌──(janvera㉿kali)-[/home/kali]
+		└─$ 
+	VER DONDE estamos
+		┌──(janvera㉿kali)-[/home/kali]
+		└─$ pwd
+		/home/kali
+	CAMBIO A USUARIO root 
+		┌──(janvera㉿kali)-[/home/kali]
+		└─$ sudo su
+		[sudo] contraseña para janvera: 
+		┌──(root㉿kali)-[/home/kali]
+		└─#  
+	CONEXION CON SSH 
+		ip address //192.168.142.134
+					//192.168.142.134
+		┌──(kali㉿kali)-[~/Escritorio]
+		└─$ sudo service ssh start
+	obtener privilegios de superusuario de forma temporal 
+		sudo apt install nmap
+	acceso de superusuario de forma más permanente, puedes cambiar a la cuenta de usuario root
+		su
+		//NO FUNCIONA
+	Comprobar la política de contraseñas
+		cat /etc/passwd | grep root	
+	Habilitando la cuenta raíz
+			┌──(kali㉿kali)-[~/Escritorio/ESTUDIOS LINUX WINDOWS]
+			└─$ cat /etc/passwd | grep root
+			root:x:0:0:root:/root:/usr/bin/zsh
+		nm-openvpn:x:113:117:NetworkManager OpenVPN,,,:/var/lib/openvpn/chroot:/usr/sbin/nolog	
+	ERROR DE PSW EN KALI 
+		┌──(janvera㉿kali)-[~]
+		└─$ su - kali                                                                 
+		Contraseña: 
+		zsh: corrupt history file /home/kali/.zsh_history
+
+		Mover y recrear el archivo de historial
+			mv ~/.zsh_history ~/.zsh_history_bad
+		┌──(janvera㉿kali)-[~]
+		└─$ ls -la ~/.zsh_history                                                     
+		ls: no se puede acceder a '/home/janvera/.zsh_history': No existe el fichero o el directorio
+
+		cREAR UN NUEVO ARCHIVO DE HISTORIAL
+			touch ~/.zsh_history
+DATOS DEL SISTEMA
+	eofetch
+CORREO INACAP
+	jorge.vera08@inacapmail.cl
+	
+	INSTALAR GOOGLE DESDE TERMINAL
+	descargamos el paquete con el Google
+		wget -c https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+	actualizar
+		sudo apt-get update
+	instalamos la librería de indicadores de sistema para poder ver el icono de Google
+		sudo apt-get install libappindicator1
+	INSTALA
+		sudo dpkg -i google-chrome-stable_current_amd64.deb	
+
+	EN CARPETA scripts 
+		#instalar_chrome.sh
+		#chmod +x instalar_chrome.sh
+
+		#!/bin/bash
+
+		# Actualizar lista de paquetes e instalar dependencias
+		echo "Actualizando lista de paquetes e instalando dependencias..."
+		sudo apt update
+		sudo apt install -y wget gdebi-core
+
+		# Pausa para verificar dependencias
+		read -p "Dependencias instaladas. Presiona Enter para continuar con la descarga de Google Chrome..."
+
+		# Descargar el paquete de Google Chrome
+		#echo "Descargando el paquete de Google Chrome..."
+		#wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+		# Pausa para verificar la descarga
+		#read -p "Paquete descargado. Presiona Enter para continuar con la instalación de Google Chrome..."
+
+		# Instalar Google Chrome
+		echo "Instalando Google Chrome..."
+		sudo gdebi -n google-chrome-stable_current_amd64.deb
+
+		# Limpiar archivos descargados
+		rm google-chrome-stable_current_amd64.deb
+
+		# Mensaje de finalización
+		echo "Google Chrome ha sido instalado exitosamente."
+
+ESTADO DE SERV 
+	┌──(janvera㉿kali)-[/root]
+	└─$ systemctl status ssh
+	● ssh.service - OpenBSD Secure Shell server
+		Loaded: loaded (/usr/lib/systemd/system/ssh.service; disabled; preset: disabled)
+		Active: active (running) since Mon 2024-06-17 11:18:42 EDT; 9min ago
+		Docs: man:sshd(8)
+				man:sshd_config(5)
+		Process: 64946 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+	Main PID: 64947 (sshd)
+		Tasks: 1 (limit: 2258)
+		Memory: 2.5M (peak: 2.8M)
+			CPU: 87ms
+		CGroup: /system.slice/ssh.service
+				└─64947 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+		
+		sudo smbstatus
+		Verificar el estado del servicio
+			sudo systemctl status smbd nmbd
+
+		Buscar procesos Samba:
+			ps aux | grep samba
+		
+		INSTALAR SAMBA EN WINDOWS
+		https://www.samba.org/samba/down
+		

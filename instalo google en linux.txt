@@ -1,0 +1,6 @@
+INSTALANDO GOOGLE
+	PRIMERO LA DESCARGA
+		desde linux de la pagina de google 
+			google-chrome-stable_current_amd64.deb
+	LUEGO LA INSTALACION
+		sudo dpkg -i google-chrome-stable_current_amd64.deb

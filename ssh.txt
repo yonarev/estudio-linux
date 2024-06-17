@@ -1,0 +1,78 @@
+https://www.youtube.com/watch?v=jj3c6XiHgQE
+SSSH
+	ssh {user}@{host}
+
+CFG DE VIRTUAL BOX
+	para conectar windows con maquina virtual
+	EN CONFIGURACION
+		network
+		bridger adapter //adaptador puente
+INSTALANDO SSH
+	sudo apt install openssh-server
+ACTIVANDO
+	EN CARPETA
+		/archivosjanvera
+	sudo service ssh status
+	sudo service start
+	queda escuchando conexiones en puert 22
+PARA CAMBIAR EL PUERTO
+	(END) //en pantalla
+	OTRO TERMINAL
+	cd .. //ir a la raiz
+	cd etc/ssh
+	sudo nano sshd_config //para editar el puerto
+
+EN OTRO TERMINAL	
+	whoami	//despliega janvera
+	passwd --? //ayuda de la passs
+	passwd --s janvera //estatus de la pass
+		P es que ya hay / np no hay pasw
+	passwd //apara seteo pasw
+
+OBTENER IP DE MAQ VIRTUAL LINUX
+	ip address
+		//en coneccion 2 
+		172.17.235.248/24 
+ESTABLECER CONEX DESDE WINDOWS
+	EN TERMINAL 
+		ssh janvera@172.17.235.248 
+			//pide yes
+			//pide ps
+		cd //virgulilla va a raiz alt 126
+		less archivo.txt //lee archivo
+		touch archivonuevo.txt
+		rb archivoaborrar.txt
+	COPIAR A WINDOWS DESDE ARCHIVO EN LINUX 
+	quizas si de linux a windows
+		scp janvera@172.17.235.248:/home/janvera/archivosjanvera/ssh.txt c:/Users/notebook/Desktop
+		
+		NO FUNCIONA
+	
+	RENDIMIENTO 
+		INSTALAR
+			sudo apt install htop
+		ejecutar
+			htop
+REINTENTO
+	sudo service ssh status
+	ip address 
+	192.168.80.243
+	ssh janvera@192.168.80.243
+	scp janvera@192.168.80.243:/home/janvera/archivosjanvera/ssh.txt C:/Users/notebook/Documents/janvera/serverarchivos
+SOLUCION
+	INSTALADOR 
+		https://www.youtube.com/watch?v=Q8oq81qRafo
+		portable 
+		MobaXterm_Portable_v24.1
+			session ssh
+				ip
+				us
+				psw 
+
+		por aplicacion de windows
+		teniendo servidor ssh desde linux	
+			192.168.230.77
+		
+EN BIBLIOTECA CON SU WIFI
+	172.17.235.246		
+

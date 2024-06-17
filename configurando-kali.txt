@@ -1,0 +1,37 @@
+CAMBIO DE IDIOMA
+	sudo apt update
+	sudo apt install locales
+	MENU EN PANTALLA PARA ELEJIR UTF
+	sudo dpkg-reconfigure locales
+	//ELEJI es_CL.UTF-8
+	sudo reboot
+CAMBIANDO EL TECLADO
+	sudo dpkg-reconfigure keyboard-configuration
+	MENU EN PANTALLA
+		por omision esta
+			es?CL.UTF-8 //
+	OTRO MENU
+		microsoft natural elite
+		espa;ol latinoamericano
+	OTRO MENU
+		Distribucion por omision
+	OTRO MENU
+		tecla izquierda de logo	
+	NO FUNCIONO MEJOR INTERFAZ GRAF
+		microsoft natural
+		español latinoamericano
+		OK
+VERGULILLA
+	~ //no funciona f5
+SERVIDOR SSH 
+	para traspazar archivo de comandos linux
+	carpeta completa ESTUDIOS LINUX WINDOWS
+	sudo service ssh start
+	sudo service ssh status
+	
+	ip address
+		192.168.142.134
+		
+	
+	
+		
